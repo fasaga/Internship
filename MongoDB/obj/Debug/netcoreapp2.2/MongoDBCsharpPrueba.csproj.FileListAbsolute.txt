@@ -1,0 +1,11 @@
+C:\Users\erik.ortega\source\repos\MongoDBCsharpPrueba\bin\Debug\netcoreapp2.2\MongoDBCsharpPrueba.deps.json
+C:\Users\erik.ortega\source\repos\MongoDBCsharpPrueba\bin\Debug\netcoreapp2.2\MongoDBCsharpPrueba.runtimeconfig.json
+C:\Users\erik.ortega\source\repos\MongoDBCsharpPrueba\bin\Debug\netcoreapp2.2\MongoDBCsharpPrueba.runtimeconfig.dev.json
+C:\Users\erik.ortega\source\repos\MongoDBCsharpPrueba\bin\Debug\netcoreapp2.2\MongoDBCsharpPrueba.dll
+C:\Users\erik.ortega\source\repos\MongoDBCsharpPrueba\obj\Debug\netcoreapp2.2\MongoDBCsharpPrueba.csprojAssemblyReference.cache
+C:\Users\erik.ortega\source\repos\MongoDBCsharpPrueba\obj\Debug\netcoreapp2.2\MongoDBCsharpPrueba.csproj.CoreCompileInputs.cache
+C:\Users\erik.ortega\source\repos\MongoDBCsharpPrueba\obj\Debug\netcoreapp2.2\MongoDBCsharpPrueba.AssemblyInfoInputs.cache
+C:\Users\erik.ortega\source\repos\MongoDBCsharpPrueba\obj\Debug\netcoreapp2.2\MongoDBCsharpPrueba.AssemblyInfo.cs
+C:\Users\erik.ortega\source\repos\MongoDBCsharpPrueba\bin\Debug\netcoreapp2.2\MongoDBCsharpPrueba.pdb
+C:\Users\erik.ortega\source\repos\MongoDBCsharpPrueba\obj\Debug\netcoreapp2.2\MongoDBCsharpPrueba.dll
+C:\Users\erik.ortega\source\repos\MongoDBCsharpPrueba\obj\Debug\netcoreapp2.2\MongoDBCsharpPrueba.pdb
