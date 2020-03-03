@@ -2,9 +2,9 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 
-namespace InternApiModel.Models
+namespace Intern.Models
 {
-    public class InternrModel
+    public class Intern
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -27,12 +27,5 @@ namespace InternApiModel.Models
         public string Lead { get; set; }
         public string ResourceManager { get; set; }
         public string Comment { get; set; }
-}
-
-public class TechnologiesSummary
-{
-    public string starting { get; set; }
-    public string final { get; set; }
-
-}
+    }
 }
