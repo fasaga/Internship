@@ -8,6 +8,6 @@ namespace TechnologiesSummaryModel.Models
     {
         public string starting { get; set; }
         public string final { get; set; }
-
+        public string[] all { get; set; }
     }
 }
