@@ -1,4 +1,5 @@
 ﻿using Internship.API.Services.Interfaces;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,12 @@ namespace Internship.API.Services
     {
         private readonly IMongoCollection<User> _user;
 
-        public BookService(IBookstoreDatabaseSettings settings)
+        public UsersService(IUsersService settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _user = database.GetCollection<User>(settings.BooksCollectionName);
+            _user = database.GetCollection<User>(settings.UsersCollectionName);
         }
 
         public List<User> Get() =>

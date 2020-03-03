@@ -18,7 +18,7 @@ namespace Internship.API.Controllers
             _userService = userService;
         }
                 [HttpPost]
-        public ActionResult<User> Create(User user)
+        public ActionResult<User>Create(User user)
         {
             _UserService.Create(user);
 
