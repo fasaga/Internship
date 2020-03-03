@@ -8,8 +8,6 @@ namespace Intern.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-
-        [BsonElement("Intern")]
         [Required]
         public int UserId { get; set; }
         [Required]
