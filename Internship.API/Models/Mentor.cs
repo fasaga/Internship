@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -9,9 +10,8 @@ namespace Internship.API.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        [BsonElement("Mentor")]
 
-        public int Id { get; set; }
+        public int MentorId { get; set; }
 
         [Required]
         public string FistName { get; set; } 
@@ -30,6 +30,6 @@ namespace Internship.API.Models
 
         [Required]
         public string Status { get; set; }
-        public string Interns { get; set; }
+        public List<String> Interns { get; set; }
     }
 }
