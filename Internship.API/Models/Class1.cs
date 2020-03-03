@@ -4,14 +4,15 @@ using System;
 
 namespace InternApiModel.Models
 {
-    public class MentorModel
+    public class InternrModel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
 
         [BsonElement("Intern")]
-
+        [Required]
         public int UserId { get; set; }
+        [Required]
         public int MentorId { get; set; }
         public string TechnologiesSummary { get; set; }
         public int InitialEnglishLevel { get; set; }
