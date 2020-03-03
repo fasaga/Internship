@@ -9,8 +9,8 @@ namespace Internship.API.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        
 
+        [BsonElement("id")]
         public int UserId { get; set; }
 
         [BsonElement("first_name")]
@@ -32,7 +32,7 @@ namespace Internship.API.Models
         [Required]
         public DateTime StartDate { get; set; }
         
-        [BsonElement("End_date")]
+        [BsonElement("end_date")]
         public DateTime EndDate { get; set; }
         
         [BsonElement("active_technology")]
