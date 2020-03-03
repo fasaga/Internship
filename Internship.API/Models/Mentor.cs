@@ -14,22 +14,22 @@ namespace Internship.API.Models
         public int MentorId { get; set; }
 
         [Required]
-        public string first_name { get; set; } 
+        public string FistName { get; set; } 
 
         [Required]
-        public string last_name { get; set; }
+        public string LastName { get; set; }
 
         [Required]
-        public string email { get; set; }
-        public string phone { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
 
         [Required]
-        public DateTime start_date { get; set; }
-        public DateTime end_date { get; set; }
-        public string active_technology { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string ActiveTechnology { get; set; }
 
         [Required]
-        public string status { get; set; }
-        public List<String> interns { get; set; }
+        public string Status { get; set; }
+        public List<String> Interns { get; set; }
     }
 }
