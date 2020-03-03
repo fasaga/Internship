@@ -17,7 +17,7 @@ namespace InternApiModel.Models
         public string TechnologiesSummary { get; set; }
         public int InitialEnglishLevel { get; set; }
         public int FinalEnglishLevel { get; set; }
-        public boolean Hired { get; set; }
+        public bool Hired { get; set; }
         public int HiredSprintId { get; set; }
         public string Location { get; set; }
         public string fourthSourceOrg { get; set; }
