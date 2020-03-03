@@ -20,7 +20,7 @@ namespace Intern.Models
         public bool Hired { get; set; }
         public int HiredSprintId { get; set; }
         public string Location { get; set; }
-        public string fourthSourceOrg { get; set; }
+        public string FourthSourceOrg { get; set; }
         public string Client { get; set; }
         public string Project { get; set; }
         public string Team { get; set; }
