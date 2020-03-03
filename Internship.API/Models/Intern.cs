@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 
-namespace Intern.Models
+namespace Internship.API.Models
 {
     public class Intern
     {
@@ -12,7 +12,7 @@ namespace Intern.Models
         public int UserId { get; set; }
         [Required]
         public int MentorId { get; set; }
-        public string TechnologiesSummary { get; set; }
+        public TechnologiesSummary TechnologiesSummary { get; set; }
         public int InitialEnglishLevel { get; set; }
         public int FinalEnglishLevel { get; set; }
         public bool Hired { get; set; }

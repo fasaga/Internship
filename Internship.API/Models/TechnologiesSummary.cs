@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 
-namespace TechnologiesSummaryModel.Models
+namespace Internship.API.Models
 {
     public class TechnologiesSummary
     {
