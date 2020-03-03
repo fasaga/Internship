@@ -10,7 +10,6 @@ namespace Internship.API.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
 
-        [BsonElement("Users")]
 
         public int UserId { get; set; }
         [Required]
