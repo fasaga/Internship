@@ -14,7 +14,7 @@ namespace Internship.API.Models
         public int MentorId { get; set; }
 
         [Required]
-        public string FistName { get; set; } 
+        public string FirstName { get; set; } 
 
         [Required]
         public string LastName { get; set; }
