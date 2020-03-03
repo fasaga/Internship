@@ -6,8 +6,8 @@ namespace TechnologiesSummaryModel.Models
 {
     public class TechnologiesSummary
     {
-        public string starting { get; set; }
-        public string final { get; set; }
-        public string[] all { get; set; }
+        public string Starting { get; set; }
+        public string Final { get; set; }
+        public string[] All { get; set; }
     }
 }
