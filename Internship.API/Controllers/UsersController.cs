@@ -20,7 +20,7 @@ namespace Internship.API.Controllers
                 [HttpPost]
         public ActionResult<User> Create(User user)
         {
-            _bookService.Create(user);
+            _UserService.Create(user);
 
             return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
         }
