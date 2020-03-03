@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Internship.API", "Internship.API\Internship.API.csproj", "{42FE0B50-75FF-4E30-8048-9A4769A30206}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Internship.API.Tests", "Internship.API.Tests\Internship.API.Tests.csproj", "{1B6C1C50-06D3-436E-B715-563494FD7E65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Internship.API.Tests", "Internship.API.Tests\Internship.API.Tests.csproj", "{1B6C1C50-06D3-436E-B715-563494FD7E65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
