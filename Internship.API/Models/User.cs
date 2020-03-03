@@ -26,5 +26,6 @@ namespace Internship.API.Models
         [Required]
         public string Status { get; set; }
         public string Role { get; set; }
+
     }
 }
