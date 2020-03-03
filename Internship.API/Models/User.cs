@@ -9,7 +9,7 @@ namespace Internship.API.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-
+        [BsonElement("first_name")]
 
         public int UserId { get; set; }
         [Required]
@@ -25,7 +25,6 @@ namespace Internship.API.Models
         public string ActiveTechnology { get; set; }
         [Required]
         public string Status { get; set; }
-
         public string Role { get; set; }
     }
 }
