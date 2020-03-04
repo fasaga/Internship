@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Internship.API.Repositories;
+using Internship.API.Repositories.Interfaces;
+using Internship.API.Services;
+using Internship.API.Services.Interfaces;
 using Intership.API.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +39,10 @@ namespace Internship.API
 
             services.AddSingleton<ISourceSCDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<SourceSCDatabaseSettings>>().Value);
+
+            services.AddSingleton(typeof(IUserRepository), typeof(UserRepository));
+            services.AddSingleton(typeof(IUserService), typeof(UserService));
+
             services.AddControllers();
         }
 

@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Internship.API.Repositories.Interfaces
+namespace Internship.API.Services.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserService
     {
         User Create(User user);
     }
 }
+

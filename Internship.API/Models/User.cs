@@ -11,11 +11,11 @@ namespace Internship.API.Models
         [BsonRepresentation(BsonType.ObjectId)]
 
         [BsonElement("user_id")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [BsonElement("first_name")]
         [Required]
-        public string FistName { get; set; }
+        public string FirstName { get; set; }
         
         [BsonElement("last_name")]
         [Required]
