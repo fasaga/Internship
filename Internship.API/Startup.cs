@@ -42,6 +42,8 @@ namespace Internship.API
 
             services.AddSingleton(typeof(IUserRepository), typeof(UserRepository));
             services.AddSingleton(typeof(IUserService), typeof(UserService));
+            services.AddSingleton(typeof(IInternRepository), typeof(InternRepository));
+            services.AddSingleton(typeof(IInternService), typeof(InternService));
 
             services.AddControllers();
         }

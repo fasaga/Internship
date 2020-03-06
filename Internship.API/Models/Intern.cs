@@ -10,7 +10,7 @@ namespace Internship.API.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         [Required]
         public int MentorId { get; set; }
         public TechnologiesSummary TechnologiesSummary { get; set; }
