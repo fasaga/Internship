@@ -20,7 +20,7 @@ namespace Internship.API.Controllers
         {
             _internService = internService;
         }
-
+        
         [HttpPost]
         public ActionResult<Intern> Create(Intern intern)
         {
