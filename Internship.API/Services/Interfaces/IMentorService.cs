@@ -10,9 +10,5 @@ namespace Internship.API.Services.Interfaces
     public interface IMentorService
     {
          List<Mentor> Get();
-        internal List<Mentor> Filter(string jsonQuery)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
