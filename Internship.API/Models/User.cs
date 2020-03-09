@@ -13,11 +13,11 @@ namespace Internship.API.Models
         [BsonElement("user_id")]
         public string UserId { get; set; }
 
-        [BsonElement("first_Name")]
+        [BsonElement("first_name")]
         [Required]
         public string FirstName { get; set; }
         
-        [BsonElement("last_Name")]
+        [BsonElement("last_name")]
         [Required]
         public string LastName { get; set; }
         
@@ -28,14 +28,14 @@ namespace Internship.API.Models
         [BsonElement("phone")]
         public string Phone { get; set; }
         
-        [BsonElement("start_Date")]
+        [BsonElement("start_date")]
         [Required]
         public DateTime StartDate { get; set; }
         
-        [BsonElement("end_Date")]
+        [BsonElement("end_date")]
         public DateTime EndDate { get; set; }
         
-        [BsonElement("active_Technology")]
+        [BsonElement("active_technology")]
         public string ActiveTechnology { get; set; }
         
         [BsonElement("status")]
