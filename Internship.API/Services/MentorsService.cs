@@ -23,7 +23,7 @@ namespace Internship.API.Services
         public List<Mentor> Get() =>
            _mentor.Find(mentor => true).ToList();
 
-        public Mentor Get(int id) =>
-            _mentor.Find<Mentor>(mentor => mentor.MentorId == id).FirstOrDefault();
+        //public Mentor Get(int id) =>
+        //    _mentor.Find<Mentor>(mentor => mentor.MentorId == id).FirstOrDefault();
     }
 }
