@@ -24,7 +24,7 @@ namespace Internship.API.Services
         public Intern Create(Intern intern)
         {
             Intern returnIntern = new Intern();
-            if (_userRepository.GetId(intern.UserId) == true)
+            if (_userRepository.GetId(intern.UserId))
             {
                 returnIntern = _internRepository.Create(intern);
             }
