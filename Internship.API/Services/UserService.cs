@@ -20,6 +20,11 @@ namespace Internship.API.Services
         {
             return _userRepository.Create(user);
         }
+
+        public List<User> Get()
+        {
+            return _userRepository.Get();
+        }
     }
 
 }
