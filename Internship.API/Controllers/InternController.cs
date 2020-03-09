@@ -24,13 +24,8 @@ namespace Internship.API.Controllers
         [HttpPost]
         public ActionResult<Intern> Create(Intern intern)
         {
-            Intern test = new Intern();
-            test =_internService.Create(intern);
-            if (test == null)
-            {
-                Console.WriteLine("Test");
-            }
-            return test;
+            
+            return _internService.Create(intern); ;
 
         }
         [HttpPut]
