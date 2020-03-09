@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Internship.API.Models;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Internship.API.Repositories.Interfaces
 {
-    public class IMentorRepository
+    public interface IMentorRepository
     {
-        public string UsersCollectionName { get; set; }
-        public string ConnectionString { get; set; }
-        public string DatabaseName { get; set; }
+        List<Mentor> Get();
     }
 }

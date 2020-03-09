@@ -1,13 +1,14 @@
 ﻿using Internship.API.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Internship.API.Repositories.Interfaces
+namespace Internship.API.Services.Interfaces
 {
-    public interface IUserRepository
+    public interface IMentorService
     {
-        User Create(User user);
+         List<Mentor> Get();
     }
 }
