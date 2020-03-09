@@ -9,6 +9,8 @@ namespace Internship.API.Services.Interfaces
     public interface IUserService
     {
         User Create(User user);
+        List<User> Get();
     }
 }
+
 
