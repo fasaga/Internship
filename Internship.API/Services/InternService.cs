@@ -12,14 +12,31 @@ namespace Internship.API.Services
     public class InternService : IInternService
     {
         private readonly IInternRepository _internRepository;
-        public InternService(IInternRepository internRepository)
+        private readonly IUserRepository _userRepository;
+        public InternService(IInternRepository internRepository, IUserRepository userRepository)
         {
             _internRepository = internRepository;
+            _userRepository = userRepository;
         }
+
+
+
         public Intern Create(Intern intern)
         {
-            return _internRepository.Create(intern);
+            Intern returnIntern = new Intern();
+            if (_userRepository.GetId(intern.UserId) == true)
+            {
+                returnIntern = _internRepository.Create(intern);
+            }
+            else
+            {
+                 returnIntern = null;
+            }
+            return returnIntern;
         }
     }
-
+        
+        
 }
+
+

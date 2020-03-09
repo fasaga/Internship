@@ -22,7 +22,7 @@ namespace Internship.API.Repositories
         }
 
         public List<User> Get() =>
-            _users.Find(user => true).ToList();
+           _users.Find(user => true).ToList();
 
         public User Get(string id) =>
             _users.Find<User>(user => user.UserId == id).FirstOrDefault();
@@ -41,5 +41,11 @@ namespace Internship.API.Repositories
 
         public void Remove(string id) =>
           _users.DeleteOne(user => user.UserId == id);
+
+        public Boolean GetId(String userId) 
+        {
+            
+           return _users.Find(user => user.UserId == userId).FirstOrDefault() != null;
+        }
     }
 }

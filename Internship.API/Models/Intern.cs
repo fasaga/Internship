@@ -9,6 +9,7 @@ namespace Internship.API.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+        [Required]
         [BsonElement("user_id")]
         public string UserId { get; set; }
         [BsonElement("mentor_id")]

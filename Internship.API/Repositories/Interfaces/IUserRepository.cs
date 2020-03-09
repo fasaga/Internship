@@ -9,5 +9,6 @@ namespace Internship.API.Repositories.Interfaces
     public interface IUserRepository
     {
         User Create(User user);
+        Boolean GetId(String userId);
     }
 }
