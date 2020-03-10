@@ -12,11 +12,11 @@ namespace Internship.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class InternController : ControllerBase
+    public class InternsController : ControllerBase
     {
         private readonly IInternService _internService;
 
-        public InternController(IInternService internService)
+        public InternsController(IInternService internService)
         {
             _internService = internService;
         }
