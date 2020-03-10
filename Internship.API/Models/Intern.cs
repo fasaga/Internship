@@ -14,19 +14,19 @@ namespace Internship.API.Models
         public string UserId { get; set; }
         [BsonElement("mentor_id")]
         public string MentorId { get; set; }
-        [BsonElement("Technologies_Summary")]
+        [BsonElement("technologies")]
         public TechnologiesSummary TechnologiesSummary { get; set; }
-        [BsonElement("Initial_EnglishLevel")]
+        [BsonElement("initial_english_level")]
         public int InitialEnglishLevel { get; set; }
-        [BsonElement("Final_EnglishLevel")]
+        [BsonElement("final_english_level")]
         public int FinalEnglishLevel { get; set; }
-        [BsonElement("Hired")]
+        [BsonElement("hired")]
         public bool Hired { get; set; }
-        [BsonElement("Hired_Sprint")]
+        [BsonElement("hired_sprint_id")]
         public int HiredSprintId { get; set; }
-        [BsonElement("Location")]
+        [BsonElement("location")]
         public string Location { get; set; }
-        [BsonElement("FourthSourceOrg")]
+        [BsonElement("4th_source_org")]
         public string FourthSourceOrg { get; set; }
         [BsonElement("client")]
         public string Client { get; set; }
@@ -36,9 +36,9 @@ namespace Internship.API.Models
         public string Team { get; set; }
         [BsonElement("lead")]
         public string Lead { get; set; }
-        [BsonElement("resourcemanager")]
+        [BsonElement("resource_manager")]
         public string ResourceManager { get; set; }
-        [BsonElement("comment")]
+        [BsonElement("comments")]
         public string Comment { get; set; }
     }
 }
