@@ -12,35 +12,27 @@ namespace Internship.API.MentorsGetEndPointTest
 {
     public class MentorsGetEndPointTest : ControllerBase
     {
-        [Fact]
-        public async void Task_GetMentors_Controller()
+        [Fact]  //============= Test to controller ==========================
+        public void Task_GetMentors_Controller()
         {
+            //Arrange 
             var service = new Mock<IMentorService>();
             service.Setup(s => s.Get()).Returns(new List<Mentor>());
-
-
             var controller = new MentorsController(service.Object);
-
-
             //Act  
             var data = controller.Get();
-
             //Assert  
             Assert.IsType<List<Mentor>>(data);
         }
-        [Fact]
-        public async void Task_GetMentors_Services()
+        [Fact]  //============= Test to Service ==========================
+        public void Task_GetMentors_Services()
         {
+            //Arrange 
             var service = new Mock<IMentorRepository>();
             service.Setup(s => s.Get()).Returns(new List<Mentor>());
-
-
             var controller = new MentorService(service.Object);
-
-
             //Act  
             var data = controller.Get();
-
             //Assert  
             Assert.IsType<List<Mentor>>(data);
         }
