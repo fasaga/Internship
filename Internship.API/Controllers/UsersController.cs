@@ -35,7 +35,7 @@ namespace Internship.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetId(string id)
+        public ActionResult GetId(string id)
         {
             return _userService.GetId();
         }
