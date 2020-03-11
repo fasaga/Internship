@@ -1,5 +1,6 @@
 using Internship.API.Controllers;
 using Internship.API.Models;
+using Internship.API.Repositories.Interfaces;
 using Internship.API.Services;
 using Internship.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,7 @@ namespace Internship.API.Tests
         [Fact]
         public async void Task_GetMentors_Services()
         {
-            var service = new Mock<IMentorService>();
+            var service = new Mock<IMentorRepository>();
             service.Setup(s => s.Get()).Returns(new List<Mentor>());
 
 
