@@ -1,4 +1,5 @@
 ﻿using Internship.API.Models;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Internship.API.Repositories.Interfaces
 {
-    public interface IUserRepository
+    public interface IMentorRepository
     {
-        User Create(User user);
-        Boolean GetId(String userId);
-        List<User> Get();
+        List<Mentor> Get();
     }
 }

@@ -28,5 +28,10 @@ namespace Internship.API.Controllers
 
             return user;
         }
+        [HttpGet]
+        public List<User> Get() 
+        {
+            return _userService.Get();
+        }
     }
 }
