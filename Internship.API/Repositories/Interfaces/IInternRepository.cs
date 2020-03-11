@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Internship.API.Repositories.Interfaces
 {
-    public interface IUserRepository
+    public interface IInternRepository
     {
-        User Create(User user);
-        Boolean GetId(String userId);
-        List<User> Get();
+        Intern Create(Intern intern);
     }
 }
