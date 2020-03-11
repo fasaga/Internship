@@ -37,14 +37,14 @@ namespace Internship.API.Controllers
         [HttpGet("{id:length(24)}", Name = "GetUserId")]
         public ActionResult<User> GetId(string id)
         {
-            var userId = _userService.GetId(id);
+            var user = _userService.GetId(id);
 
-            if (userId == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return userId;
+            return user;
         }
     }
 }

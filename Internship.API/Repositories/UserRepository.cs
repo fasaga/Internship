@@ -39,10 +39,10 @@ namespace Internship.API.Repositories
         public void Remove(User userIn) =>
         _users.DeleteOne(user => user.UserId == userIn.UserId);
 
-        public Boolean GetId(String userId) 
+        public User GetId(String userId) 
         {
             
-           return _users.Find(user => user.UserId == userId).FirstOrDefault() != null;
+           return _users.Find(user => user.UserId == userId).FirstOrDefault();
         }
     }
 }
