@@ -10,6 +10,6 @@ namespace Internship.API.Repositories.Interfaces
     {
         User Create(User user);
         List<User> Get();
-        Boolean GetId(User Userid);
+        User GetId(User userId);
     }
 }
