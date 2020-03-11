@@ -25,6 +25,8 @@ namespace Internship.API.Services
         {
             return _userRepository.Get();
         }
+        public User GetId(string id) =>
+            _users.Find<User>(user => user.Id == id).FirstOrDefault();
     }
 
 }
