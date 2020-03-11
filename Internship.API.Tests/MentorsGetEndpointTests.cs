@@ -10,7 +10,7 @@ using Xunit;
 
 namespace Internship.API.MentorsGetEndPointTest
 {
-    public class MentorsGetEndPointTest : ControllerBase
+    public class MentorsGetEndpointTests : ControllerBase
     {
         [Fact]  //============= Test to controller ==========================
         public void Task_GetMentors_Controller()
