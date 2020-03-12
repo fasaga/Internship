@@ -23,9 +23,9 @@ namespace Internship.API.Services
         {
             return _mentorRepository.Get();
         }
-        public Mentor Get(String mentor)
+        public Mentor GetListInterns(String mentor)
         {
-            return _mentorRepository.Get(mentor);
+            return _mentorRepository.GetListInterns(mentor);
         }
     }
 }

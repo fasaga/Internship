@@ -27,7 +27,7 @@ namespace Internship.API.Repositories
             var mentors= _mentors.Find(user => user.Role.Equals("mentor")).ToList();
             return mentors;
         }
-        public Mentor Get(String mentor)
+        public Mentor GetListInterns(String mentor)
         {
             //var mentors = _mentors.Find(user => user.Role.Equals("mentor") && user.MentorId.Equals(mentor)).ForEachAsync(user => Console.WriteLine($"Interns: {user.Interns}"));
             var mentors = _mentors.Find(user =>user.Role.Equals("mentor") && user.MentorId.Equals(mentor)).FirstOrDefault();
