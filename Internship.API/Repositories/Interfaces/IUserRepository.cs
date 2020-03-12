@@ -10,6 +10,6 @@ namespace Internship.API.Repositories.Interfaces
     {
         User Create(User user);
         Boolean GetId(String userId);
-        List<User> Get();
+        List<User> GetAll();
     }
 }
