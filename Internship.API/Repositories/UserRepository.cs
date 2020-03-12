@@ -15,10 +15,18 @@ namespace Internship.API.Repositories
 
         public UserRepository(ISourceSCDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
+            try
+            {
+                var client = new MongoClient(settings.ConnectionString);
+                var database = client.GetDatabase(settings.DatabaseName);
 
-            _users = database.GetCollection<User>(settings.UsersCollectionName);
+                _users = database.GetCollection<User>(settings.UsersCollectionName);
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Database config is invalid.");
+            }
         }
 
         public List<User> Get() =>
