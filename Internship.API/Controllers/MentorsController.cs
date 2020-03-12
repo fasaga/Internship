@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Internship.API.Models;
 using Internship.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -20,5 +21,18 @@ namespace Internship.API.Controllers
         {
             return _mentorService.Get();
         }
+
+        [HttpGet("{mentorId:length(24)}/{interns}")]
+         public ActionResult<Mentor> Get(String mentorId)
+         {
+             var mentor = _mentorService.Get(mentorId);
+
+             if (mentor == null)
+             {
+                 return NotFound();
+             }
+
+             return mentor;
+         }
     }
 }

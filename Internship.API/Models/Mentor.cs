@@ -46,6 +46,8 @@ namespace Internship.API.Models
         [JsonIgnore]
         [BsonElement("role")]
         public string Role { get; set; }
+
+        [BsonElement("interns")]
         public List<String> Interns { get; set; }
     }
 }

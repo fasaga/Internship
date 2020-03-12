@@ -23,6 +23,10 @@ namespace Internship.API.Services
         {
             return _mentorRepository.Get();
         }
+        public Mentor Get(String mentor)
+        {
+            return _mentorRepository.Get(mentor);
+        }
     }
 }
 
