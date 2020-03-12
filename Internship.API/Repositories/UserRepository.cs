@@ -19,6 +19,7 @@ namespace Internship.API.Repositories
             var database = client.GetDatabase(settings.DatabaseName);
 
             _users = database.GetCollection<User>(settings.UsersCollectionName);
+            
         }
 
         public List<User> Get() =>
@@ -39,10 +40,7 @@ namespace Internship.API.Repositories
         public void Remove(User userIn) =>
         _users.DeleteOne(user => user.UserId == userIn.UserId);
 
-        public User GetId(String userId) 
-        {
-            
-           return _users.Find(user => user.UserId == userId).FirstOrDefault();
-        }
+        public User GetId(string id) =>
+            _users.Find<User>(user => user.UserId == id).FirstOrDefault();
     }
 }
