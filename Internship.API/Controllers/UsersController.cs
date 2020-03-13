@@ -35,9 +35,9 @@ namespace Internship.API.Controllers
         }
 
         [HttpGet("{id:length(24)}", Name = "GetUserId")]
-        public ActionResult<User> GetId(string id)
+        public ActionResult<User> GetById(string id)
         {
-            var user = _userService.GetId(id);
+            var user = _userService.GetById(id);
 
             if (user == null)
             {
