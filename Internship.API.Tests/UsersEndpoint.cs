@@ -22,9 +22,9 @@ namespace Internship.API.Tests
             var user = new User()
             //New User
             {
-                FirstName = "Erick",
-                LastName = "Ortega",
-                Email = "Erick.ortega@gmail.com",
+                FirstName = "Lucia",
+                LastName = "Gomez",
+                Email = "lucia@hotmail.com",
                 StartDate = DateTime.Parse("2020-03-01T00:00:00Z"),
                 Status = "active",
                 Role = "intern"
