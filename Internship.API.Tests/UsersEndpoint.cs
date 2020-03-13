@@ -1,8 +1,8 @@
-﻿using Moq;
+﻿using Xunit;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+using Moq;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace Internship.API.Tests
 {
