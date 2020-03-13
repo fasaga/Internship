@@ -13,17 +13,18 @@ namespace Internship.API.Tests
         [Fact]
         public void Controller_Add_ValidData_ReturnOkResult()
         {
-            //============= Test to controller ==========================
+            //============= TesT controller ==========================
             var service = new Mock<IUserService>();
             service.Setup(s => s.Create(It.IsAny<User>())).Returns((User user) => { return user; });
 
             //Arrange  
             var controller = new UsersController(service.Object);
             var user = new User()
+            //New User
             {
-                FirstName = "Lucia",
-                LastName = "Gomez",
-                Email = "lucia@hotmail.com",
+                FirstName = "Erick",
+                LastName = "Ortega",
+                Email = "Erick.ortega@gmail.com",
                 StartDate = DateTime.Parse("2020-03-01T00:00:00Z"),
                 Status = "active",
                 Role = "intern"
