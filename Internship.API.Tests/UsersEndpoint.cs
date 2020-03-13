@@ -37,8 +37,9 @@ namespace Internship.API.Tests
             Assert.IsType<ActionResult<User>>(data);
             Assert.NotNull(data);
             Assert.True(data.Value.Email.Equals("lucia@hotmail.com"));
-        }
+            
     }
-    
-    
+        
+    }
 }
+    
