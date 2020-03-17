@@ -72,22 +72,26 @@ namespace Internship.API.Controllers
 
         [ApiExplorerSettings(IgnoreApi = true)]
         [HttpGet]
-        public List<User> GetAll() 
+        public List<User> GetAll()
         {
             return _userService.GetAll();
         }
 
-        [HttpGet("{id:length(24)}", Name = "GetUserId")]
+        [HttpGet("{id:length(24)}")]
         public ActionResult<User> GetById(string id)
         {
-            var user = _userService.GetById(id);
-
-            if (user == null)
+            try
             {
-                return NotFound();
+                var user = _userService.GetById(id);
+                if (user == null) {
+                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
+                }
+                return user;
             }
-
-            return user;
+            catch (Exception e)
+            {
+                return BadRequest(new ApiError(400, "Request failed", e.Message));
+            }
         }
     }
 }
