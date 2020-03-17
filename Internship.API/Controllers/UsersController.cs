@@ -72,9 +72,9 @@ namespace Internship.API.Controllers
 
         [ApiExplorerSettings(IgnoreApi = true)]
         [HttpGet]
-        public List<User> Get() 
+        public List<User> GetAll() 
         {
-            return _userService.Get();
+            return _userService.GetAll();
         }
     }
 }

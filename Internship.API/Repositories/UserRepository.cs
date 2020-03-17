@@ -29,7 +29,7 @@ namespace Internship.API.Repositories
             }
         }
 
-        public List<User> Get() =>
+        public List<User> GetAll() =>
            _users.Find(user => true).ToList();
 
         public User Get(string id) =>
