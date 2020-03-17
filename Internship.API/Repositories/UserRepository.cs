@@ -15,15 +15,22 @@ namespace Internship.API.Repositories
 
         public UserRepository(ISourceSCDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
+            try
+            {
+                var client = new MongoClient(settings.ConnectionString);
+                var database = client.GetDatabase(settings.DatabaseName);
 
-            _users = database.GetCollection<User>(settings.UsersCollectionName);
-            
+                _users = database.GetCollection<User>(settings.UsersCollectionName);
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Database config is invalid.");
+            }
         }
 
-        public List<User> Get() =>
-            _users.Find(user => true).ToList();
+        public List<User> GetAll() =>
+           _users.Find(user => true).ToList();
 
         public User Get(string id) =>
             _users.Find<User>(user => user.UserId == id).FirstOrDefault();
@@ -42,5 +49,13 @@ namespace Internship.API.Repositories
 
         public User GetById(string id) =>
             _users.Find<User>(user => user.UserId == id).FirstOrDefault();
+        public void Remove(string id) =>
+          _users.DeleteOne(user => user.UserId == id);
+
+        public Boolean GetId(String userId) 
+        {
+            
+           return _users.Find(user => user.UserId == userId).FirstOrDefault() != null;
+        }
     }
 }

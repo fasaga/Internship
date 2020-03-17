@@ -21,9 +21,9 @@ namespace Internship.API.Services
             return _userRepository.Create(user);
         }
 
-        public List<User> Get()
+        public List<User> GetAll()
         {
-            return _userRepository.Get();
+            return _userRepository.GetAll();
         }
         public User GetById(string id)
         {

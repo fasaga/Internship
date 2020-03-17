@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Internship.API.Controllers
 {
+    [ApiExplorerSettings(IgnoreApi = true)]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Internship.API.Services.Interfaces
 {
-    public interface IUserService
+    public interface IInternService
     {
-        User Create(User user);
-        List<User> GetAll();
-        User GetById(string userId);
+        Intern Create(Intern intern);
     }
 }
-
 

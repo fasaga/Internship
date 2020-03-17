@@ -7,8 +7,19 @@ namespace Internship.API.Models
 {
     public class ApiError
     {
+        /// <summary>
+        /// Error code.
+        /// </summary>
         public int Code { get; set; }
+
+        /// <summary>
+        /// Contains information about the error.
+        /// </summary>
         public string Description { get;  set; }
+
+        /// <summary>
+        /// Contains detailed information about the error.
+        /// </summary>
         public string Message { get;  set; }
 
         public ApiError(int Code, string description)
