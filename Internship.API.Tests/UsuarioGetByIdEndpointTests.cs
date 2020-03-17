@@ -15,73 +15,63 @@ namespace Internship.API.UsuarioGetByIdEndpointTest
     {
 
         [Fact]
-        public async void Task_GetPostById_Return_OkResult()
+        public void Task_GetPostById_Return_OkResult()
         {
             //Arrange  
             //============= Test to controller ==========================
             var service = new Mock<IUserService>();
-            service.Setup(s => s.Create(It.IsAny<User>())).Returns((User user) => { return user; });
+            service.Setup(s => s.GetById(It.IsAny<string>())).Returns((string id) => {
+                return new Models.User()
+                {
+                    UserId = id,
+                    FirstName = "test",
+                    LastName = "last test"
+                };
+            });
 
             var controller = new UsersController(service.Object);
-            var postId = "2";
+            var postId = "5e659f85481f2c08e41d5a0a";
 
             //Act  
             var data = controller.GetById(postId);
 
             //Assert  
-            Assert.IsType<OkObjectResult>(data);
+            Assert.IsType<ActionResult<User>>(data);
+            Assert.True(data.Value.UserId == postId);
+            Assert.True(data.Value.FirstName == "test");
         }
 
         [Fact]
-        public async void Task_GetPostById_Return_NotFoundResult()
+        public void Task_GetPostById_Return_NotFoundResult()
         {
-            //Arrange  
-            var controller = new PostController(repository);
-            var postId = "3";
-
-            //Act  
-            var data = UsersController.GetById(postId);
-
-            //Assert  
-            Assert.IsType<NotFoundResult>(data);
-        }
-
-        [Fact]
-        public async void Task_GetPostById_Return_BadRequestResult()
-        {
+            var service = new Mock<IUserService>();
             //Arrange  
             var controller = new UsersController(service.Object);
-            int? postId = null;
+            var postId = "5e659f85481f2c08e41d5a1a";
 
             //Act  
-            var data = await controller.GetById(postId);
+            var data = controller.GetById(postId);
 
             //Assert  
-            Assert.IsType<BadRequestResult>(data);
+            Assert.IsType<ActionResult<User>>(data);
+            Assert.Null(data.Value);
         }
 
         [Fact]
-        public async void Task_GetPostById_MatchResult()
+        public void Task_GetPostById_Return_BadRequestResult()
         {
+            var service = new Mock<IUserService>();
             //Arrange  
             var controller = new UsersController(service.Object);
-            int? postId = "1";
+            string postId = null;
 
             //Act  
-            var data = await controller.GetById(postId);
+            var data = controller.GetById(postId);
 
             //Assert  
-            Assert.IsType<OkObjectResult>(data);
-
-            var okResult = data.Should().BeOfType<OkObjectResult>().Subject;
-            var post = okResult.Value.Should().BeAssignableTo<PostViewModel>().Subject;
-
-            Assert.Equal("Test Title 1", post.Title);
-            Assert.Equal("Test Description 1", post.Description);
+            Assert.IsType<ActionResult<User>>(data);
+            Assert.Null(data.Value);
         }
-    }
-
-
-
 
     }
+}
