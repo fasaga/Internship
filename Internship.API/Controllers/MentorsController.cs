@@ -22,7 +22,7 @@ namespace Internship.API.Controllers
             return _mentorService.Get();
         }
 
-        [HttpGet("{mentorId:length(24)}/{interns}")]
+        [HttpGet("{mentorId:length(24)}")]
          public ActionResult<Mentor> GetListInterns(String mentorId)
          {
              var mentor = _mentorService.GetListInterns(mentorId);
