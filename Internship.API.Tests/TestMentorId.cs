@@ -13,7 +13,7 @@ namespace Internship.API.Tests
     public class UsuarioGetByIdEndpointTests : ControllerBase
     {
         [Fact]
-        public void Task_GetPostById_Return_OkResult()
+        public void Task_GetMentorId_Return_OkResult()
         {
             //Arrange  
             //============= Test to controller ==========================
@@ -41,7 +41,7 @@ namespace Internship.API.Tests
             Assert.True(data.Value.FirstName == "test");
         }
         [Fact]
-        public void Task_GetPostById_Return_NotFoundResult()
+        public void Task_GetMentorId_Return_NotFoundResult()
         {
             var service = new Mock<IMentorService>();
             //Arrange  
