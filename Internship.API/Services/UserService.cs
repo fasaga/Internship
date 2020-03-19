@@ -25,6 +25,11 @@ namespace Internship.API.Services
         {
             return _userRepository.GetAll();
         }
+        public User GetById(string id)
+        {
+            return _userRepository.GetById(id);
+        }
     }
+    
 
 }

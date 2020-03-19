@@ -47,6 +47,8 @@ namespace Internship.API.Repositories
         public void Remove(User userIn) =>
         _users.DeleteOne(user => user.UserId == userIn.UserId);
 
+        public User GetById(string id) =>
+            _users.Find<User>(user => user.UserId == id).FirstOrDefault();
         public void Remove(string id) =>
           _users.DeleteOne(user => user.UserId == id);
 
