@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Internship.API.Models
 {
@@ -40,5 +41,8 @@ namespace Internship.API.Models
         public string ResourceManager { get; set; }
         [BsonElement("comments")]
         public string Comment { get; set; }
+        [JsonIgnore]
+        [BsonElement("role")]
+        public string Role { get; set; }
     }
 }

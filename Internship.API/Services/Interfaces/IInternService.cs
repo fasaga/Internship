@@ -9,6 +9,7 @@ namespace Internship.API.Services.Interfaces
     public interface IInternService
     {
         Intern Create(Intern intern);
+        List<Intern> Get();
     }
 }
 

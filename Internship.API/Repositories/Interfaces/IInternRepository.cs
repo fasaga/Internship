@@ -9,5 +9,6 @@ namespace Internship.API.Repositories.Interfaces
     public interface IInternRepository
     {
         Intern Create(Intern intern);
+        List<Intern> Get();
     }
 }
