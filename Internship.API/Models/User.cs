@@ -45,7 +45,7 @@ namespace Internship.API.Models
         /// The date when the user left the company
         /// </summary>
         [BsonElement("end_date")]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         /// <summary>
         /// Technology used by the user
         /// </summary>
