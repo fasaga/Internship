@@ -11,6 +11,7 @@ namespace Internship.API.Services.Interfaces
         User Create(User user);
         List<User> GetAll();
         User GetById(string userId);
+        User GetInternById(string id, string role);
     }
 }
 

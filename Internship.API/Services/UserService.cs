@@ -29,6 +29,21 @@ namespace Internship.API.Services
         {
             return _userRepository.GetById(id);
         }
+
+        public User GetInternById(string id, string role)
+        {
+            User getIntern;
+            if (role == "Intern" && id != null)
+            {
+
+                getIntern = _userRepository.GetInternById(id, role);
+            }
+            else
+            {
+                getIntern = null;
+            }
+            return getIntern;
+        }
     }
     
 

@@ -57,5 +57,10 @@ namespace Internship.API.Repositories
             
            return _users.Find(user => user.UserId == userId).FirstOrDefault() != null;
         }
+
+        public User GetInternById(string id, string role)
+        {
+            return _users.Find(user => user.UserId == id && user.Role == role).FirstOrDefault();
+        }
     }
 }

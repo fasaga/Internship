@@ -12,5 +12,6 @@ namespace Internship.API.Repositories.Interfaces
         Boolean GetId(String userId);
         List<User> GetAll();
         User GetById(string userId);
+        User GetInternById(string id, string role);
     }
 }

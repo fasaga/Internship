@@ -93,5 +93,32 @@ namespace Internship.API.Controllers
                 return BadRequest(new ApiError(400, "Request failed", e.Message));
             }
         }
+
+        [HttpGet("{role}/{id:length(24)}")]
+        public ActionResult<User> GetInternById(string id, string role)
+        {
+
+            try
+            {
+                var user = _userService.GetInternById(id, role);
+                if (user == null)
+                {
+                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
+                }
+                else
+                {
+                    return user;
+
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiError(400, "Request failed", e.Message));
+            }
+            
+
+            
+
+        }
     }
 }
