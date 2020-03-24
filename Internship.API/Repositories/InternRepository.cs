@@ -21,16 +21,12 @@ namespace Internship.API.Repositories
             _interns = database.GetCollection<Intern>(settings.InternsCollectionName);
         }
 
-        public List<Intern> Get()
-        {
-            var interns = _interns.Find(user => user.Role.Equals("interns")).ToList();
-            return interns;
-        }
+        public List<Intern> GetAll() =>
+                  _interns.Find(Intern => true).ToList();
 
         public Intern Get(string id)=>
 
             _interns.Find<Intern>(intern => intern.UserId == id).FirstOrDefault();
-
 
         public Intern Create(Intern intern)
         {

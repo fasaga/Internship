@@ -35,9 +35,9 @@ namespace Internship.API.Services
             return returnIntern;
         }
 
-        public List<Intern> Get()
+        public List<Intern> GetAll()
         {
-            return _internRepository.Get();
+            return _internRepository.GetAll();
         }
     }
         

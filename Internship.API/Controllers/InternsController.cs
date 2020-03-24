@@ -35,9 +35,9 @@ namespace Internship.API.Controllers
             return "Successful";
         }
         [HttpGet]
-        public List<Intern> Get()
+        public List<Intern> GetAll()
         {
-            return _internService.Get();
+            return _internService.GetAll();
         }
     }
 }
