@@ -57,7 +57,7 @@ namespace Internship.API.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ApiError))]
-        public ActionResult<User> Create(User user)
+        public ActionResult<UserDTO> Create(UserDTO user)
         {
             try
             {

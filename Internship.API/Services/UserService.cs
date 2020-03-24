@@ -1,4 +1,5 @@
-﻿using Internship.API.Models;
+﻿using AutoMapper;
+using Internship.API.Models;
 using Internship.API.Repositories.Interfaces;
 using Internship.API.Services.Interfaces;
 using MongoDB.Driver;
@@ -11,14 +12,23 @@ namespace Internship.API.Services
 {
     public class UserService : IUserService
     {
+        private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
-        public User Create(User user)
+        public UserDTO Create(UserDTO userDTO)
         {
-            return _userRepository.Create(user);
+            //Map all info from userDTO to user
+            User user = _mapper.Map<User>(userDTO);
+            //Call create method to store the data, and assign the result in the user variable
+            user = _userRepository.Create(user);
+            //Map all info from the result to userDTO
+            userDTO = _mapper.Map<UserDTO>(user);
+            //return created user of type UserDTO
+            return userDTO;
         }
 
         public List<User> GetAll()

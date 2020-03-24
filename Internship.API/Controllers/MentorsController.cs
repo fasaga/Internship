@@ -17,7 +17,7 @@ namespace Internship.API.Controllers
             _mentorService = mentorService;
         }
         [HttpGet]
-        public List<Mentor> Get()
+        public List<MentorDTO> Get()
         {
             return _mentorService.Get();
         }
