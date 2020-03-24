@@ -12,7 +12,9 @@ namespace Internship.API.Tests
 {
     public class InternCreateEndpointTests : ControllerBase
     {
-
+        /// <summary>
+        /// Unit test of the Controller to create users. -It is checked that it is not null. - It is checked that the mail is the same one that was sent
+        /// </summary>
         [Fact]
         public void Controller_Add_ValidData_Return_OkResult()
         {
@@ -40,6 +42,9 @@ namespace Internship.API.Tests
             Assert.NotNull(data);
             Assert.True(data.Value.Email.Equals("lucia@hotmail.com"));
         }
+        /// <summary>
+        /// Unit test of the Service to create users. -It is checked that it is not null. - It is checked that the mail is the same one that was sent
+        /// </summary>
         [Fact]
         public void Service_Add_ValidData_Return_OkResult()
         {
