@@ -20,7 +20,9 @@ namespace Internship.API.Repositories
 
             _interns = database.GetCollection<Intern>(settings.InternsCollectionName);
         }
-
+        /// <summary>
+        /// Intern-type method of bringing in interns list
+        /// </summary>
         public List<Intern> GetAll() =>
                   _interns.Find(Intern => true).ToList();
 

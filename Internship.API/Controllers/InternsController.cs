@@ -34,6 +34,9 @@ namespace Internship.API.Controllers
         {
             return "Successful";
         }
+        /// <summary>
+        /// Get Controller to get list of Interns.
+        /// </summary>
         [HttpGet]
         public List<Intern> GetAll()
         {

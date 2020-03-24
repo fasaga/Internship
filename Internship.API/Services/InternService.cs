@@ -34,7 +34,9 @@ namespace Internship.API.Services
             }
             return returnIntern;
         }
-
+        /// <summary>
+        /// Method for returning a list of interns to the repository
+        /// </summary>
         public List<Intern> GetAll()
         {
             return _internRepository.GetAll();
