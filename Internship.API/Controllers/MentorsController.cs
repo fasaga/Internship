@@ -16,6 +16,9 @@ namespace Internship.API.Controllers
         {
             _mentorService = mentorService;
         }
+        /// <summary>
+        /// Get Controller to get list of mentors.
+        /// </summary>
         [HttpGet]
         public List<Mentor> Get()
         {

@@ -22,6 +22,9 @@ namespace Internship.API.Repositories
 
             _mentors = database.GetCollection<Mentor>(settings.UsersCollectionName);
         }
+        /// <summary>
+        /// Mentor-type method to search for users who have the role of mentor and return list.
+        /// </summary>
         public List<Mentor> Get()
         {
             var mentors= _mentors.Find(user => user.Role.Equals("mentor")).ToList();

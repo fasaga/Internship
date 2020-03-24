@@ -19,6 +19,9 @@ namespace Internship.API.Services
         {
             _mentorRepository = mentorRepository;
         }
+        /// <summary>
+        /// Method for returning a list of mentors to the repository
+        /// </summary>
         public List<Mentor> Get()
         {
             return _mentorRepository.Get();

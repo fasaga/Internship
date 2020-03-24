@@ -9,6 +9,9 @@ namespace Internship.API.Services.Interfaces
 {
     public interface IMentorService
     {
-         List<Mentor> Get();
+        /// <summary>
+        /// Mentor-type method of bringing in mentor list
+        /// </summary>
+        List<Mentor> Get();
     }
 }
