@@ -49,9 +49,19 @@ namespace Internship.API.Services
         /// </summary>
         public List<InternDTO> GetAll()
         {
+            //Retrieve all current user in the database
             List<Intern> interns = _internRepository.GetAll();
-            //Declare a new list that will contains the mapped mentors
+
+            //Declare a new list that will contains the mapped user
             List<InternDTO> response = new List<InternDTO>();
+            foreach (Intern item in interns)
+            {
+                //Do the mapping
+                InternDTO intern = _mapper.Map<InternDTO>(item);
+                //Add the mapped user to the response list
+                response.Add(intern);
+            }
+
             return response;
         }
     }
