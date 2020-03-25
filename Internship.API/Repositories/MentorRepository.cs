@@ -13,16 +13,16 @@ namespace Internship.API.Repositories
 {
     public class MentorRepository : IMentorRepository
     {
-        private readonly IMongoCollection<Mentor> _mentors;
+        private readonly IMongoCollection<User> _mentors;
 
         public MentorRepository(ISourceSCDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _mentors = database.GetCollection<Mentor>(settings.UsersCollectionName);
+            _mentors = database.GetCollection<User>(settings.UsersCollectionName);
         }
-        public List<Mentor> Get()
+        public List<User> Get()
         {
             var mentors= _mentors.Find(user => user.Role.Equals("mentor")).ToList();
             return mentors;

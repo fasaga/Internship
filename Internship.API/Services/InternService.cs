@@ -1,4 +1,5 @@
-﻿using Internship.API.Models;
+﻿using AutoMapper;
+using Internship.API.Models;
 using Internship.API.Repositories.Interfaces;
 using Internship.API.Services.Interfaces;
 using MongoDB.Driver;
@@ -13,26 +14,33 @@ namespace Internship.API.Services
     {
         private readonly IInternRepository _internRepository;
         private readonly IUserRepository _userRepository;
-        public InternService(IInternRepository internRepository, IUserRepository userRepository)
+        private readonly IMapper _mapper;
+        public InternService(IInternRepository internRepository, IUserRepository userRepository, IMapper mapper)
         {
             _internRepository = internRepository;
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
 
 
-        public Intern Create(Intern intern)
+        public InternDTO Create(InternDTO internDTO)
         {
-            Intern returnIntern = new Intern();
-            if (_userRepository.GetId(intern.UserId))
+            Intern intern = new Intern();
+            User user = _userRepository.GetById(internDTO.UserId);
+            if (user != null && _internRepository.Get(internDTO.UserId) == null)
             {
-                returnIntern = _internRepository.Create(intern);
+                intern = _mapper.Map<Intern>(internDTO);
+                intern = _internRepository.Create(intern);
+                internDTO = _mapper.Map<InternDTO>(intern);
+                internDTO.LoadUserInfo(user);
+                return internDTO;
             }
             else
             {
-                 returnIntern = null;
+                internDTO = null;
             }
-            return returnIntern;
+            return internDTO;
         }
         /// <summary>
         /// Method for returning a list of interns to the repository
@@ -42,8 +50,8 @@ namespace Internship.API.Services
             return _internRepository.GetAll();
         }
     }
-        
-        
+
+
 }
 
 

@@ -26,6 +26,9 @@ namespace Internship.API.Repositories
         public List<Intern> GetAll() =>
                   _interns.Find(Intern => true).ToList();
 
+        public List<Intern> GetByMentorId(string mentorId) =>
+            _interns.Find(user => user.MentorId.Equals(mentorId)).ToList();
+
         public Intern Get(string id)=>
 
             _interns.Find<Intern>(intern => intern.UserId == id).FirstOrDefault();

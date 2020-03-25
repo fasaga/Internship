@@ -23,10 +23,10 @@ namespace Internship.API.Controllers
         }
         
         [HttpPost]
-        public ActionResult<Intern> Create(Intern intern)
+        public ActionResult<InternDTO> Create(InternDTO intern)
         {
             
-            return _internService.Create(intern); ;
+            return _internService.Create(intern);
 
         }
         [HttpPut]

@@ -9,6 +9,6 @@ namespace Internship.API.Repositories.Interfaces
 {
     public interface IMentorRepository
     {
-        List<Mentor> Get();
+        List<User> Get();
     }
 }

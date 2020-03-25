@@ -9,9 +9,8 @@ namespace Internship.API.Repositories.Interfaces
     public interface IInternRepository
     {
         Intern Create(Intern intern);
-        /// <summary>
-        ///  Intern-type method of bringing in intern list
-        /// </summary>
-        List<Intern> GetAll();
+        Intern Get(string id);
+
+        List<Intern> GetByMentorId(string mentorId);
     }
 }

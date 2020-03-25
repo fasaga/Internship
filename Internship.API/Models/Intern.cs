@@ -16,7 +16,11 @@ namespace Internship.API.Models
         [BsonElement("mentor_id")]
         public string MentorId { get; set; }
         [BsonElement("technologies")]
-        public TechnologiesSummary TechnologiesSummary { get; set; }
+        public string[] Technologies { get; set; }
+        [BsonElement("starting_technology")]
+        public string StartingTechnology { get; set; }
+        [BsonElement("final_technology")]
+        public string FinalTechnology { get; set; }
         [BsonElement("initial_english_level")]
         public int InitialEnglishLevel { get; set; }
         [BsonElement("final_english_level")]
@@ -40,6 +44,6 @@ namespace Internship.API.Models
         [BsonElement("resource_manager")]
         public string ResourceManager { get; set; }
         [BsonElement("comments")]
-        public string Comment { get; set; }
+        public string Comments { get; set; }
     }
 }
