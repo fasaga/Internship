@@ -7,9 +7,12 @@ namespace Internship.API.Models
 {
     public class User
     {
+        /// <summary>
+        /// ID of the user
+        /// </summary>
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-
+       
         [BsonElement("user_id")]
         public string UserId { get; set; }
         /// <summary>
