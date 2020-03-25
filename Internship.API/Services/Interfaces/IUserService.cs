@@ -9,7 +9,10 @@ namespace Internship.API.Services.Interfaces
     public interface IUserService
     {
         UserDTO Create(UserDTO user);
-        List<User> GetAll();
+        /// <summary>
+        /// User-type method of bringing in User list
+        /// </summary>
+        List<UserDTO> GetAll();
         User GetById(string userId);
     }
 }

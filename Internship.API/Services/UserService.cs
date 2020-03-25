@@ -31,9 +31,21 @@ namespace Internship.API.Services
             return userDTO;
         }
 
-        public List<User> GetAll()
+        public List<UserDTO> GetAll()
         {
-            return _userRepository.GetAll();
+            //Retrieve all current user in the database
+            List<User> users = _userRepository.GetAll();
+
+            //Declare a new list that will contains the mapped user
+            List<UserDTO> response = new List<UserDTO>();
+            foreach (User item in users) {
+                //Do the mapping
+                UserDTO user = _mapper.Map<UserDTO>(item);
+                //Add the mapped user to the response list
+                response.Add(user);
+            }
+
+            return response;
         }
         public User GetById(string id)
         {
