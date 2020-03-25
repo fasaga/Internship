@@ -12,7 +12,7 @@ namespace Internship.API.Services.Interfaces
         /// <summary>
         /// User-type method of bringing in User list
         /// </summary>
-        List<User> GetAll();
+        List<UserDTO> GetAll();
         User GetById(string userId);
     }
 }

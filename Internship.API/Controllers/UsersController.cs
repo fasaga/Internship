@@ -74,7 +74,7 @@ namespace Internship.API.Controllers
         
         [HttpGet]
        ///Get All Users in the application   
-        public List<User> GetAll()
+        public List<UserDTO> GetAll()
         {
             return _userService.GetAll();
         }
