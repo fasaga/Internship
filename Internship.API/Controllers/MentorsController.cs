@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Internship.API.Controllers
 {
-    [ApiExplorerSettings(IgnoreApi = true)]
     [Route("api/[controller]")]
     [ApiController]
     public class MentorsController : ControllerBase
@@ -16,6 +15,9 @@ namespace Internship.API.Controllers
         {
             _mentorService = mentorService;
         }
+        /// <summary>
+        /// Get a list of all users with a mentor role
+        /// </summary>
         [HttpGet]
         public List<MentorDTO> Get()
         {
