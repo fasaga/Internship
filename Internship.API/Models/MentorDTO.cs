@@ -54,7 +54,7 @@ namespace Internship.API.Models
         /// </summary>
         public string Role { get; set; }
         /// <summary>
-        /// List of interns information assigned to the mentor
+        /// List of interns assigned to the mentor
         /// </summary>
         public List<InternDTO> Interns { get; set; }
     }
