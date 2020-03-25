@@ -71,12 +71,20 @@ namespace Internship.API.Controllers
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
+        
         [HttpGet]
+       ///Get All Users in the application   
         public List<User> GetAll()
         {
             return _userService.GetAll();
         }
-
+        /// <summary>
+        /// Get User by spesific ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// returns a User
+        /// </returns>
         [HttpGet("{id:length(24)}")]
         public ActionResult<User> GetById(string id)
         {
