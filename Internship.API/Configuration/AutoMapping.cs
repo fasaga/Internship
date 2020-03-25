@@ -7,12 +7,9 @@ namespace Internship.API.Configuration
     {
         public AutoMapping()
         {
-            CreateMap<User, UserDTO>(); // means you want to map from User to UserDTO
-            CreateMap<UserDTO, User>(); // means you want to map from UserDTO to User
-            CreateMap<User, MentorDTO>(); // means you want to map from User to MentorDTO
-            CreateMap<MentorDTO, User>(); // means you want to map from MentorDTO to User
-            CreateMap<InternDTO, Intern>(); // means you want to map from InternDTO to Intern
-            CreateMap<Intern, InternDTO>(); // means you want to map from Intern to InternDTO
+            CreateMap<User, UserDTO>().ReverseMap(); // means you want to map from User to UserDTO and viceversa
+            CreateMap<User, MentorDTO>().ReverseMap(); // means you want to map from User to MentorDTO and viceversa
+            CreateMap<Intern, InternDTO>().ReverseMap(); // means you want to map from Intern to InternDTO and viceversa
         }
     }
 }

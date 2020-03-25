@@ -34,6 +34,8 @@ namespace Internship.API.Services
                 intern = _internRepository.Create(intern);
                 internDTO = _mapper.Map<InternDTO>(intern);
                 internDTO.LoadUserInfo(user);
+                //load mentor info
+                //internDTO.LoadInternInfo(user);
                 return internDTO;
             }
             else
