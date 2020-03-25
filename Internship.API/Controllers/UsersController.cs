@@ -72,9 +72,28 @@ namespace Internship.API.Controllers
         /// <summary>
         /// Get All users in the aplication 
         /// </summary>
+        /// /// <remarks>
+        /// Sample request:
+        ///
+        ///     GET api/users
+        ///     {
+        ///             "userId": "5e73d8c697c01f208467265b",
+        ///             "firstName": "Juanito",
+        ///             "lastName": "Perez",
+        ///             "email": "joaquin@hotmail.com",
+        ///             "phone": null,
+        ///             "startDate": "2020-03-01T00:00:00Z",
+        ///             "endDate": "0001-01-01T00:00:00Z",
+        ///             "activeTechnology": null,
+        ///             "status": "active",
+        ///             "role": "mentor"
+        ///     }
+        /// </remarks>
         /// <returns>
         /// retorns list whit all registered users
         /// </returns>
+        /// <response code="200">Returns the all users.</response>
+
         [ApiExplorerSettings(IgnoreApi = true)]
         [HttpGet] 
         public List<UserDTO> GetAll()
