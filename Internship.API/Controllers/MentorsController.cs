@@ -16,7 +16,7 @@ namespace Internship.API.Controllers
             _mentorService = mentorService;
         }
         /// <summary>
-        /// In this method we get a list of all users with a mentor role
+        /// Get a list of all users with a mentor role
         /// </summary>
         [HttpGet]
         public List<MentorDTO> Get()
