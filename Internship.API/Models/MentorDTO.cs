@@ -8,6 +8,9 @@ namespace Internship.API.Models
 {
     public class MentorDTO
     {
+        /// <summary>
+        /// Unique user id
+        /// </summary>
         public string UserId { get; set; }
         /// <summary>
         /// First name of the User
@@ -50,7 +53,9 @@ namespace Internship.API.Models
         /// role of the user (admin,intern,mentor)
         /// </summary>
         public string Role { get; set; }
-
+        /// <summary>
+        /// List of interns assigned to the mentor
+        /// </summary>
         public List<InternDTO> Interns { get; set; }
     }
 }
