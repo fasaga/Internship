@@ -38,7 +38,7 @@ namespace Internship.API.Controllers
         /// Get Controller to get list of Interns.
         /// </summary>
         [HttpGet]
-        public List<Intern> GetAll()
+        public List<InternDTO> GetAll()
         {
             return _internService.GetAll();
         }

@@ -45,9 +45,12 @@ namespace Internship.API.Services
         /// <summary>
         /// Method for returning a list of interns to the repository
         /// </summary>
-        public List<Intern> GetAll()
+        public List<InternDTO> GetAll()
         {
-            return _internRepository.GetAll();
+            List<Intern> interns = _internRepository.GetAll();
+            //Declare a new list that will contains the mapped mentors
+            List<InternDTO> response = new List<InternDTO>();
+            return response;
         }
     }
 
