@@ -10,7 +10,7 @@ namespace Internship.API.Services.Interfaces
     {
         UserDTO Create(UserDTO user);
         List<User> GetAll();
-        User GetById(string userId);
+        UserDTO GetById(string userId);
     }
 }
 

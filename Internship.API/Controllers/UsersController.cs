@@ -78,7 +78,7 @@ namespace Internship.API.Controllers
         }
 
         [HttpGet("{id:length(24)}")]
-        public ActionResult<User> GetById(string id)
+        public ActionResult<UserDTO> GetById(string id)
         {
             try
             {

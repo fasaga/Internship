@@ -35,9 +35,11 @@ namespace Internship.API.Services
         {
             return _userRepository.GetAll();
         }
-        public User GetById(string id)
+        public UserDTO GetById(string id)
         {
-            return _userRepository.GetById(id);
+            User user = _userRepository.GetById(id);
+            UserDTO userDTO = _mapper.Map<UserDTO>(user);
+            return userDTO;
         }
     }
     
