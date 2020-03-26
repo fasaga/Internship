@@ -45,6 +45,7 @@ namespace Internship.API.Models
         public string ResourceManager { get; set; }
         [BsonElement("comments")]
         public string Comments { get; set; }
-
+        [BsonElement("role")]
+        public string Role { get; set; }
     }
 }
