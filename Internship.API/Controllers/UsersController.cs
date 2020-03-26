@@ -93,7 +93,7 @@ namespace Internship.API.Controllers
         /// returns a User
         /// </returns>
         [HttpGet("{id:length(24)}")]
-        public ActionResult<User> GetById(string id)
+        public ActionResult<UserDTO> GetById(string id)
         {
             try
             {
