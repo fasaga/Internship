@@ -28,13 +28,21 @@ namespace Internship.API.Repositories
                 throw new Exception("Database config is invalid.");
             }
         }
-
+        /// <summary>
+        /// User-type method of bringing in all Users list
+        /// </summary>
         public List<User> GetAll() =>
            _users.Find(user => true).ToList();
 
         public User Get(string id) =>
             _users.Find<User>(user => user.UserId == id).FirstOrDefault();
-
+        /// <summary>
+        /// User-type method to create a new user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>
+        /// the new user
+        /// </returns>
         public User Create(User user)
         {
             _users.InsertOne(user);

@@ -69,14 +69,29 @@ namespace Internship.API.Controllers
             }
 
         }
+        /// <summary>
+        /// Get All users in the aplication 
+        /// </summary>
+        /// <returns>
+        /// returns list with all registered users
+        /// </returns>
+        /// <response code="200">Returns all users.</response>
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        [HttpGet]
-        public List<User> GetAll()
+        [HttpGet] 
+        public List<UserDTO> GetAll()
         {
             return _userService.GetAll();
         }
 
+
+        /// <summary>
+        /// Get User by spesific ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// returns a User
+        /// </returns>
         [HttpGet("{id:length(24)}")]
         public ActionResult<UserDTO> GetById(string id)
         {

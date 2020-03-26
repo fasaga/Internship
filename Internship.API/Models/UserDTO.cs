@@ -7,6 +7,9 @@ namespace Internship.API.Models
 {
     public class UserDTO
     {
+        /// <summary>
+        /// ID of the user 
+        /// </summary>
         public string UserId { get; set; }
         /// <summary>
         /// First name of the User
