@@ -28,7 +28,6 @@ namespace Internship.API.Repositories
             return mentors;
         }
 
-        public User GetById(string id) =>
-            _mentors.Find<User>(mentor => mentor.Role == id).FirstOrDefault();
+        
     }
 }
