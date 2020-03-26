@@ -75,5 +75,21 @@ namespace Internship.API.Models
             Status = user.Status;
             Role = user.Role;
         }
+
+        internal void LoadMentorInfo(User mentor)
+        {
+            Mentor = new MentorDTO()
+            {
+                FirstName = mentor.FirstName,
+                LastName = mentor.LastName,
+                Email = mentor.Email,
+                Phone = mentor.Phone,
+                StartDate = mentor.StartDate,
+                EndDate = mentor.EndDate,
+                ActiveTechnology = mentor.ActiveTechnology,
+                Status = mentor.Status,
+                Role = mentor.Role
+            };
+        }
     }
 }
