@@ -46,5 +46,10 @@ namespace Internship.API.Repositories
 
         public void Remove(string id) =>
           _interns.DeleteOne(intern => intern.UserId == id);
+
+        public Intern GetInternById(string id)
+        {
+            return _interns.Find(intern => intern.UserId == id).FirstOrDefault();
+        }
     }
 }

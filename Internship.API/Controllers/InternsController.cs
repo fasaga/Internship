@@ -16,7 +16,7 @@ namespace Internship.API.Controllers
     public class InternsController : ControllerBase
     {
         private readonly IInternService _internService;
-
+        
         public InternsController(IInternService internService)
         {
             _internService = internService;
@@ -34,5 +34,37 @@ namespace Internship.API.Controllers
         {
             return "Successful";
         }
+
+        /// <summary>
+        /// Get Intern by spesific ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// returns a Intern
+        /// </returns>
+        [HttpGet("{id:length(24)}")]
+        public ActionResult<InternDTO> GetInternById(string id)
+        {
+            try
+            {
+                var intern = _internService.GetInternById(id);
+                if (intern == null)
+                {
+                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
+                    
+                }
+                else
+                {
+                    return intern;
+
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiError(400, "Request failed", e.Message));
+            }
+
+        }
+        
     }
 }
