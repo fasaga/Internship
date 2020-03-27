@@ -111,7 +111,9 @@ namespace Internship.API.Models
         /// Comments
         /// </summary>
         public string Comments { get; set; }
-
+        /// <summary>
+        /// Mentor´s info of the Intern
+        /// </summary>
         public MentorDTO Mentor { get; set; }
 
         internal void LoadUserInfo(User user)
