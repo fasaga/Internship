@@ -68,6 +68,31 @@ namespace Internship.API.Services
             }
             return internsDTO;
         }
+       
+        public MentorDTO GetByMentorId(string id)
+        {
+            User mentorDB = _mentorRepository.GetById(id);
+            if (mentorDB == null)
+            {
+                return null; 
+            }
+            //Do the mapping
+            MentorDTO mentor = _mapper.Map<MentorDTO>(mentorDB);
+            //Retrieve all interns related to the mentor
+            List<Intern> interns = _internRepository.GetByMentorId(mentor.UserId);
+            List<InternDTO> internsDTO = new List<InternDTO>();
+            foreach (var intern in interns)
+            {
+                InternDTO internDTO = _mapper.Map<InternDTO>(intern);
+                User internInfo = _userRepository.GetById(internDTO.UserId);
+                internDTO.LoadUserInfo(internInfo);
+                internsDTO.Add(internDTO);
+            }
+            mentor.Interns = internsDTO;
+            //Add the mapped mentor to the response list
+            return mentor;
+        }
+        
     }
 }
 

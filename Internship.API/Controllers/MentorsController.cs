@@ -43,5 +43,25 @@ namespace Internship.API.Controllers
                 return BadRequest(new ApiError(400, "Request failed", e.Message));
             }
         }
+
+        /// <summary>
+        /// Get Mentor´s information  
+        /// </summary>
+        /// <param name="id">Mentor's id</param>
+        /// <returns>The Mentor</returns>
+        /// <response code="200">Returns The Mentor </response>
+        [HttpGet("{id:length(24)}")]
+        public ActionResult<MentorDTO> GetByMentorId(string id)
+        {
+            try
+            {
+                var mentor = _mentorService.GetByMentorId(id);
+                return mentor;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiError(400, "Request failed", e.Message));
+            }
+        }
     }
 }

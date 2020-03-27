@@ -11,5 +11,6 @@ namespace Internship.API.Services.Interfaces
     {
          List<MentorDTO> Get();
         List<InternDTO> GetInternsByMentorId(string mentorId);
+        MentorDTO GetByMentorId(string mentorId);
     }
 }
