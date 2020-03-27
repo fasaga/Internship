@@ -11,6 +11,7 @@ namespace Internship.API.Services.Interfaces
         UserDTO Create(UserDTO user);
         UserDTO GetById(string userId);
         List<UserDTO> GetAll();
+        
     }
 }
 

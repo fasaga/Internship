@@ -1,4 +1,4 @@
-﻿using Internship.API.Controllers;
+﻿/*using Internship.API.Controllers;
 using Internship.API.Models;
 using Internship.API.Repositories.Interfaces;
 using Internship.API.Services;
@@ -21,7 +21,7 @@ namespace Internship.API.UsuarioGetByIdEndpointTest
             //============= Test to controller ==========================
             var service = new Mock<IUserService>();
             service.Setup(s => s.GetById(It.IsAny<string>())).Returns((string id) => {
-                return new Models.User()
+                return new Models.UserDTO()
                 {
                     UserId = id,
                     FirstName = "test",
@@ -74,4 +74,4 @@ namespace Internship.API.UsuarioGetByIdEndpointTest
         }
 
     }
-}
+}*/

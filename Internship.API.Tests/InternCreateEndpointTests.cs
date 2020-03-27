@@ -1,4 +1,4 @@
-﻿using Xunit;
+﻿/*using Xunit;
 using Microsoft.AspNetCore.Mvc;
 using Internship.API.Controllers;
 using Internship.API.Models;
@@ -72,4 +72,4 @@ namespace Internship.API.Tests
             Assert.True(data.Email.Equals("lucia@hotmail.com"));
         }
     }
-}
+}*/

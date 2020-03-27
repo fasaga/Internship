@@ -65,5 +65,6 @@ namespace Internship.API.Repositories
             
            return _users.Find(user => user.UserId == userId).FirstOrDefault() != null;
         }
+
     }
 }
