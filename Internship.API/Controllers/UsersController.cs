@@ -70,14 +70,12 @@ namespace Internship.API.Controllers
 
         }
         /// <summary>
-        /// Get All users in the aplication 
+        /// Get All users in the application 
         /// </summary>
         /// <returns>
         /// returns list with all registered users
         /// </returns>
         /// <response code="200">Returns all users.</response>
-
-        [ApiExplorerSettings(IgnoreApi = true)]
         [HttpGet] 
         public List<UserDTO> GetAll()
         {
@@ -86,12 +84,13 @@ namespace Internship.API.Controllers
 
 
         /// <summary>
-        /// Get User by spesific ID
+        /// Get User by specific ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
         /// returns a User
         /// </returns>
+        /// <response code="200">Returns a user.</response>
         [HttpGet("{id:length(24)}")]
         public ActionResult<UserDTO> GetById(string id)
         {
