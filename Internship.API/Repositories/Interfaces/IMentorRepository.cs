@@ -10,6 +10,6 @@ namespace Internship.API.Repositories.Interfaces
     public interface IMentorRepository
     {
         List<User> Get();
-        
+        User GetById(string mentorId);
     }
 }
