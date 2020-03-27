@@ -9,6 +9,8 @@ namespace Internship.API.Services.Interfaces
 {
     public interface IMentorService
     {
-         List<Mentor> Get();
+         List<MentorDTO> Get();
+        List<InternDTO> GetInternsByMentorId(string mentorId);
+        MentorDTO GetByMentorId(string mentorId);
     }
 }

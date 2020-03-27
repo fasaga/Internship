@@ -24,6 +24,9 @@ namespace Internship.API.Repositories
         public List<Intern> Get() =>
             _interns.Find(intern => true).ToList();
 
+        public List<Intern> GetByMentorId(string mentorId) =>
+            _interns.Find(user => user.MentorId.Equals(mentorId)).ToList();
+
         public Intern Get(string id)=>
 
             _interns.Find<Intern>(intern => intern.UserId == id).FirstOrDefault();
@@ -43,5 +46,10 @@ namespace Internship.API.Repositories
 
         public void Remove(string id) =>
           _interns.DeleteOne(intern => intern.UserId == id);
+
+        public Intern GetInternById(string id)
+        {
+            return _interns.Find(intern => intern.UserId == id).FirstOrDefault();
+        }
     }
 }

@@ -8,7 +8,8 @@ namespace Internship.API.Services.Interfaces
 {
     public interface IInternService
     {
-        Intern Create(Intern intern);
+        InternDTO Create(InternDTO intern);
+        InternDTO GetInternById(string id);
     }
 }
 

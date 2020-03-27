@@ -57,7 +57,7 @@ namespace Internship.API.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ApiError))]
-        public ActionResult<User> Create(User user)
+        public ActionResult<UserDTO> Create(UserDTO user)
         {
             try
             {
@@ -69,12 +69,46 @@ namespace Internship.API.Controllers
             }
 
         }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        [HttpGet]
-        public List<User> Get() 
+        /// <summary>
+        /// Get All users in the application 
+        /// </summary>
+        /// <returns>
+        /// returns list with all registered users
+        /// </returns>
+        /// <response code="200">Returns all users.</response>
+        [HttpGet] 
+        public List<UserDTO> GetAll()
         {
-            return _userService.Get();
+            return _userService.GetAll();
         }
+
+
+        /// <summary>
+        /// Get User by specific ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// returns a User
+        /// </returns>
+        /// <response code="200">Returns a user.</response>
+        [HttpGet("{id:length(24)}")]
+        public ActionResult<UserDTO> GetById(string id)
+        {
+            try
+            {
+                var user = _userService.GetById(id);
+                if (user == null) {
+                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
+                }
+                return user;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiError(400, "Request failed", e.Message));
+            }
+        }
+
+        
+
     }
 }

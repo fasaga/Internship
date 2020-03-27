@@ -8,8 +8,10 @@ namespace Internship.API.Services.Interfaces
 {
     public interface IUserService
     {
-        User Create(User user);
-        List<User> Get();
+        UserDTO Create(UserDTO user);
+        UserDTO GetById(string userId);
+        List<UserDTO> GetAll();
+        
     }
 }
 
