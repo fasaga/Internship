@@ -10,13 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Internship.API.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     public class InternsController : ControllerBase
     {
         private readonly IInternService _internService;
-        
+
         public InternsController(IInternService internService)
         {
             _internService = internService;
@@ -60,14 +60,14 @@ namespace Internship.API.Controllers
         [HttpPost]
         public ActionResult<InternDTO> Create(InternDTO intern)
         {
-            
+
             return _internService.Create(intern);
 
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
         [HttpPut]
-        public string Update( Intern intern)
+        public string Update(Intern intern)
         {
             return "Successful";
         }
@@ -89,7 +89,7 @@ namespace Internship.API.Controllers
                 if (intern == null)
                 {
                     return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
-                    
+
                 }
                 else
                 {
@@ -103,6 +103,26 @@ namespace Internship.API.Controllers
             }
 
         }
-        
+        [HttpPut("{id:length(24)}")]
+        public ActionResult<InternDTO> Update(string id, Intern internIn)
+        {
+            try
+            {
+                var intern = _internService.GetInternById(id);
+                if (intern == null)
+                {
+                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
+                }
+                else
+                {
+                    _internService.Update(id, internIn);
+                    return _internService.GetInternById(id);
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiError(400, "Request failed", e.Message));
+            }
+        }
     }
 }
