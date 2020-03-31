@@ -133,6 +133,7 @@ namespace Internship.API.Models
         {
             Mentor = new MentorDTO()
             {
+                UserId = mentor.UserId,
                 FirstName = mentor.FirstName,
                 LastName = mentor.LastName,
                 Email = mentor.Email,
