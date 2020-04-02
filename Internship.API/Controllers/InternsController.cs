@@ -10,13 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Internship.API.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     public class InternsController : ControllerBase
     {
         private readonly IInternService _internService;
-        
+
         public InternsController(IInternService internService)
         {
             _internService = internService;
@@ -60,14 +60,14 @@ namespace Internship.API.Controllers
         [HttpPost]
         public ActionResult<InternDTO> Create(InternDTO intern)
         {
-            
+
             return _internService.Create(intern);
 
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
         [HttpPut]
-        public string Update( Intern intern)
+        public string Update(Intern intern)
         {
             return "Successful";
         }
@@ -88,7 +88,7 @@ namespace Internship.API.Controllers
                 var intern = _internService.GetInternById(id);
                 if (intern == null)
                 {
-                    return NotFound(new ApiError(404, "Intern not found", $"Id: {id}"));
+                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
                     
                 }
                 else
