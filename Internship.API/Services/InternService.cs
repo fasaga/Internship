@@ -93,8 +93,6 @@ namespace Internship.API.Services
             return internDTO;
         }
     }
-
-
 }
 
 
