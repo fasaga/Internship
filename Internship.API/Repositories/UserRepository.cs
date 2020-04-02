@@ -49,8 +49,11 @@ namespace Internship.API.Repositories
             return user;
         }
 
-        public void Update(string id, User userIn) =>
+        public User Update(string id, User userIn)
+        {
             _users.ReplaceOne(user => user.UserId == id, userIn);
+            return userIn;
+        }
 
         public void Remove(User userIn) =>
         _users.DeleteOne(user => user.UserId == userIn.UserId);

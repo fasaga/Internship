@@ -134,19 +134,20 @@ namespace Internship.API.Controllers
         ///         "message": "The UserId field is required."
         ///     }
         /// </remarks>
-        /// <param name="id">Object of type Intern, contains all intern's information to be update.</param>
+        /// <param name="id">Interns id</param>
+        /// <param name="internIn">Object of type Intern, Contains all intern's information to be update.</param>
         /// <returns>The updated intern.</returns>
         /// <response code="200">Returns the update intern.</response>
         /// <response code="400">If the intern did not pass validation/ any other error</response>  
         [HttpPut("{id:length(24)}")]
-        public ActionResult<InternDTO> Update(string id, Intern internIn)
+        public ActionResult<InternDTO> Update(string id, InternDTO internIn)
         {
             try
             {
                 var intern = _internService.GetInternById(id);
                 if (intern == null)
                 {
-                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
+                    return NotFound(new ApiError(404, "User not found", $"Id: {id}"));
                 }
                 else
                 {

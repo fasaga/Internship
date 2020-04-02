@@ -80,11 +80,13 @@ namespace Internship.API.Services
             }
             return internDTO;
         }
-        public InternDTO Update(string id, Intern internIn)
+        public InternDTO Update(string id, InternDTO internIn)
         {
-            User getUser = _userRepository.Update(id, internIn);
+            User userinfo = _mapper.Map<User>(internIn);
+            User user = _userRepository.Update(id, userinfo);
+            Intern intern = _mapper.Map<Intern>(internIn);
             //Map all info from userDTO to user
-            Intern getIntern = _internRepository.Update(id,internIn);
+            Intern getIntern = _internRepository.Update(id, intern);
             //Map all info from the result to userDTO
             InternDTO internDTO = _mapper.Map<InternDTO>(getIntern);
             //return the user of type UserDTO
