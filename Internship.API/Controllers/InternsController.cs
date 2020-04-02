@@ -103,6 +103,41 @@ namespace Internship.API.Controllers
             }
 
         }
+        /// <summary>
+        /// Update a Intern in the application for an existing User.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     PUT api/interns
+        ///     {
+        ///         "userId": "5e7a721921487c6b60743623",
+        ///         "firstName": "humberto",
+        ///         "lastName": "Del asdsd",
+        ///         "email": "asdasd@hotmail.com",
+        ///         "phone": "312-99-5487",
+        ///         "startDate": "0001-01-01T00:00:00Z",
+        ///         "endDate": "0001-01-01T00:00:00Z",
+        ///         "activeTechnology": "net",
+        ///         "status": "active",
+        ///         "role": "intern",
+        ///         "mentorId": "5e7a76db5fe004666c5e9702",
+        ///         "comments": "Comments",
+        ///         "technologies": ["net", "java"]
+        ///     }
+        ///     
+        /// Sample error:
+        ///     
+        ///     {
+        ///         "code": 400,
+        ///         "description": "Validation failed",
+        ///         "message": "The UserId field is required."
+        ///     }
+        /// </remarks>
+        /// <param name="id">Object of type Intern, contains all intern's information to be update.</param>
+        /// <returns>The updated intern.</returns>
+        /// <response code="200">Returns the update intern.</response>
+        /// <response code="400">If the intern did not pass validation/ any other error</response>  
         [HttpPut("{id:length(24)}")]
         public ActionResult<InternDTO> Update(string id, Intern internIn)
         {

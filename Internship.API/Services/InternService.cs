@@ -64,10 +64,25 @@ namespace Internship.API.Services
             //Map all info from the result to userDTO
             InternDTO internDTO = _mapper.Map<InternDTO>(getIntern);
             //return the user of type UserDTO
+            if (internDTO.UserId != null)
+            {
+                User user = _userRepository.GetById(internDTO.UserId);
+                //load mentor info
+                //internDTO.Load menor Info(user);
+                internDTO.LoadUserInfo(user);
+            }
+            if (internDTO.MentorId != null)
+            {
+                User mentor = _userRepository.GetById(internDTO.MentorId);
+                //load mentor info
+                //internDTO.Load menor Info(user);
+                internDTO.LoadMentorInfo(mentor);
+            }
             return internDTO;
         }
         public InternDTO Update(string id, Intern internIn)
         {
+            User getUser = _userRepository.Update(id, internIn);
             //Map all info from userDTO to user
             Intern getIntern = _internRepository.Update(id,internIn);
             //Map all info from the result to userDTO
