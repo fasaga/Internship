@@ -15,6 +15,6 @@ namespace Internship.API.Repositories.Interfaces
         /// </summary>
         List<User> GetAll();
         User GetById(string userId);
-        
+        User Update(string id, User userIn);
     }
 }
