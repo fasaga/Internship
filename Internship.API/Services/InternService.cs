@@ -30,12 +30,24 @@ namespace Internship.API.Services
             User user = _userRepository.GetById(internDTO.UserId);
             if (user != null && _internRepository.Get(internDTO.UserId) == null)
             {
+                //Map all info from internDTO to intern
                 intern = _mapper.Map<Intern>(internDTO);
+                //Call create method to store the data, and assign the result in the intern variable
                 intern = _internRepository.Create(intern);
+                //Map all info from the result to userDTO
                 internDTO = _mapper.Map<InternDTO>(intern);
+                //load user info
+                //internDTO.Load user Info(user);
                 internDTO.LoadUserInfo(user);
-                //load mentor info
-                //internDTO.LoadInternInfo(user);
+                if (internDTO.MentorId != null)
+                {
+                    User mentor = _userRepository.GetById(internDTO.MentorId);
+                    //load mentor info
+                    //internDTO.Load menor Info(user);
+                    internDTO.LoadMentorInfo(mentor);
+                }
+                
+                //return created intern of type InternDTO
                 return internDTO;
             }
             else
@@ -44,25 +56,15 @@ namespace Internship.API.Services
             }
             return internDTO;
         }
-        /// <summary>
-        /// Method for returning a list of interns to the repository
-        /// </summary>
-        public List<InternDTO> GetAll()
+
+        public InternDTO GetInternById(string id)
         {
-            //Retrieve all current user in the database
-            List<Intern> interns = _internRepository.GetAll();
-
-            //Declare a new list that will contains the mapped user
-            List<InternDTO> response = new List<InternDTO>();
-            foreach (Intern item in interns)
-            {
-                //Do the mapping
-                InternDTO intern = _mapper.Map<InternDTO>(item);
-                //Add the mapped user to the response list
-                response.Add(intern);
-            }
-
-            return response;
+            //Map all info from userDTO to user
+            Intern getIntern = _internRepository.GetInternById(id);
+            //Map all info from the result to userDTO
+            InternDTO internDTO = _mapper.Map<InternDTO>(getIntern);
+            //return the user of type UserDTO
+            return internDTO;
         }
     }
 

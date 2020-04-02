@@ -69,24 +69,30 @@ namespace Internship.API.Controllers
             }
 
         }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        
-        [HttpGet]
-       ///Get All Users in the application   
+        /// <summary>
+        /// Get All users in the application 
+        /// </summary>
+        /// <returns>
+        /// returns list with all registered users
+        /// </returns>
+        /// <response code="200">Returns all users.</response>
+        [HttpGet] 
         public List<UserDTO> GetAll()
         {
             return _userService.GetAll();
         }
+
+
         /// <summary>
-        /// Get User by spesific ID
+        /// Get User by specific ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
         /// returns a User
         /// </returns>
+        /// <response code="200">Returns a user.</response>
         [HttpGet("{id:length(24)}")]
-        public ActionResult<User> GetById(string id)
+        public ActionResult<UserDTO> GetById(string id)
         {
             try
             {
@@ -101,5 +107,8 @@ namespace Internship.API.Controllers
                 return BadRequest(new ApiError(400, "Request failed", e.Message));
             }
         }
+
+        
+
     }
 }
