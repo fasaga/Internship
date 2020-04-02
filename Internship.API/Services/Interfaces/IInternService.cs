@@ -10,6 +10,7 @@ namespace Internship.API.Services.Interfaces
     {
         InternDTO Create(InternDTO intern);
         InternDTO GetInternById(string id);
+        List<InternDTO> GetAll();
     }
 }
 

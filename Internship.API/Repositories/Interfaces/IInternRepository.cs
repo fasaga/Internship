@@ -10,7 +10,8 @@ namespace Internship.API.Repositories.Interfaces
     {
         Intern Create(Intern intern);
         Intern Get(string id);
-
+        List<Intern> GetAll();
         List<Intern> GetByMentorId(string mentorId);
+        Intern GetInternById(string id);
     }
 }

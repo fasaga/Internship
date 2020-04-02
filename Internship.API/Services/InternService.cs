@@ -2,11 +2,7 @@
 using Internship.API.Models;
 using Internship.API.Repositories.Interfaces;
 using Internship.API.Services.Interfaces;
-using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Internship.API.Services
 {
@@ -46,7 +42,7 @@ namespace Internship.API.Services
                     //internDTO.Load menor Info(user);
                     internDTO.LoadMentorInfo(mentor);
                 }
-                
+
                 //return created intern of type InternDTO
                 return internDTO;
             }
@@ -66,9 +62,29 @@ namespace Internship.API.Services
             //return the user of type UserDTO
             return internDTO;
         }
+
+        public List<InternDTO> GetAll()
+        {
+            //Retrieve all current interm in the database
+            List<Intern> interns = _internRepository.GetAll();
+
+            //Declare a new list that will contains the mapped intern
+            List<InternDTO> response = new List<InternDTO>();
+            foreach (Intern item in interns)
+            {
+                //Do the mapping
+                InternDTO intern = _mapper.Map<InternDTO>(item);
+                //Add the mapped inert to the response list
+                User internInfo = _userRepository.GetById(intern.UserId);
+                intern.LoadUserInfo(internInfo);
+                ///intern.Add(intern);
+                response.Add(intern);
+            }
+
+            return response;
+        }
+
     }
-
-
 }
 
 
