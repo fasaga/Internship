@@ -56,7 +56,14 @@ namespace Internship.API.Controllers
             try
             {
                 var mentor = _mentorService.GetByMentorId(id);
-                return mentor;
+                if (mentor == null)
+                {
+                    return BadRequest(new ApiError(404, "Mentor not found", $"Id: {id}"));
+                }
+                else
+                {
+                    return mentor;
+                }
             }
             catch (Exception e)
             {

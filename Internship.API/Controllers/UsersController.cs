@@ -100,7 +100,10 @@ namespace Internship.API.Controllers
                 if (user == null) {
                     return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
                 }
-                return user;
+                else
+                {
+                    return user;
+                }
             }
             catch (Exception e)
             {
