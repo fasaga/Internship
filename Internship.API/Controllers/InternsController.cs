@@ -88,7 +88,7 @@ namespace Internship.API.Controllers
                 var intern = _internService.GetInternById(id);
                 if (intern == null)
                 {
-                    return BadRequest(new ApiError(404, "Intern not found", $"Id: {id}"));
+                    return NotFound(new ApiError(404, "Intern not found", $"Id: {id}"));
                     
                 }
                 else

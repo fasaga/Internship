@@ -98,7 +98,7 @@ namespace Internship.API.Controllers
             {
                 var user = _userService.GetById(id);
                 if (user == null) {
-                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
+                    return NotFound(new ApiError(404, "User not found", $"Id: {id}"));
                 }
                 else
                 {
