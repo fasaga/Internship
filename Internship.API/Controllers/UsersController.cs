@@ -100,7 +100,7 @@ namespace Internship.API.Controllers
             }
         }
         /// <summary>
-        /// Get User by spesific ID
+        /// Update User by spesific ID
         /// </summary>
         ///         /// <remarks>
         /// Sample request:
@@ -128,7 +128,7 @@ namespace Internship.API.Controllers
         /// <response code="200">Returns the user update.</response>
         /// <response code="400">User not found</response>   
         [HttpPut("{id:length(24)}")]
-        public ActionResult<User> Update(string id, User userIn)
+        public ActionResult<User> Update(string id, UserDTO userIn)
         {
             try
             {
@@ -142,7 +142,7 @@ namespace Internship.API.Controllers
                 {
 
                     _userService.Update(id, userIn);
-                    return userIn;
+                    return _userService.GetById(id);
                 }
                
             }

@@ -36,13 +36,15 @@ namespace Internship.API.Services
             return _userRepository.GetById(id);
         }
 
-        public UserDTO Update(string id, User userIn)
+        public UserDTO Update(string id, UserDTO userIn)
         {
-            //Call Update method to store the data, and assign the result in the user variables
-            User getUser = _userRepository.Update(id, userIn);
+            User userinfo = _mapper.Map<User>(userIn);
+            User user = _userRepository.Update(id, userinfo);
+            //Map all info from userDTO to user
+            User getuser = _userRepository.Update(id, user);
             //Map all info from the result to userDTO
-            UserDTO userDTO = _mapper.Map<UserDTO>(getUser);
-            //return created user of type UserDTO
+            UserDTO userDTO = _mapper.Map<UserDTO>(getuser);
+            //return the user of type UserDTO
             return userDTO;
         }
     }

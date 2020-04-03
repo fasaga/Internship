@@ -17,7 +17,7 @@ namespace Internship.API.Services.Interfaces
         /// <param name="id"></param>
         /// <param name="userIn"></param>
         /// <returns></returns>
-        UserDTO Update(string id, User userIn);
+        UserDTO Update(string id, UserDTO userIn);
     }
 }
 
