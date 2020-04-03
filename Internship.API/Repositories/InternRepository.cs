@@ -38,13 +38,21 @@ namespace Internship.API.Repositories
             return intern;
         }
 
-        public void Update(string id, Intern internIn) =>
+        public Intern Update(string id, Intern internIn)
+        {
             _interns.ReplaceOne(intern => intern.UserId == id, internIn);
+            return internIn;
+        }
 
         public void Remove(Intern internIn) =>
         _interns.DeleteOne(intern => intern.UserId == internIn.UserId);
 
         public void Remove(string id) =>
           _interns.DeleteOne(intern => intern.UserId == id);
+
+        public Intern GetInternById(string id)
+        {
+            return _interns.Find(intern => intern.UserId == id).FirstOrDefault();
+        }
     }
 }

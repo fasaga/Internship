@@ -12,5 +12,9 @@ namespace Internship.API.Repositories.Interfaces
         Intern Get(string id);
 
         List<Intern> GetByMentorId(string mentorId);
+
+        Intern GetInternById(string id);
+
+        Intern Update(string id, Intern internIn);
     }
 }

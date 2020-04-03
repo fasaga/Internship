@@ -1,4 +1,4 @@
-using Internship.API.Controllers;
+/*using Internship.API.Controllers;
 using Internship.API.Models;
 using Internship.API.Repositories.Interfaces;
 using Internship.API.Services;
@@ -41,4 +41,4 @@ namespace Internship.API.MentorsGetEndPointTest
 
 
     }
-}
+}*/
