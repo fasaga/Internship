@@ -61,6 +61,15 @@ namespace Internship.API.Controllers
         {
             try
             {
+                if (user.EndDate >= user.StartDate.AddMonths(6))
+                {
+                    return BadRequest(new ApiError(400, "the end date must be greater than the start date"));
+
+                }
+                else if (user.Role == "intern" && user.EndDate == null)
+                {
+                    user.EndDate = user.StartDate.AddMonths(6);
+                }
                 return _userService.Create(user);
             }
             catch (Exception e)
