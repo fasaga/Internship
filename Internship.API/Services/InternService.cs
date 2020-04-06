@@ -77,6 +77,10 @@ namespace Internship.API.Services
                 //Add the mapped inert to the response list
                 User internInfo = _userRepository.GetById(intern.UserId);
                 intern.LoadUserInfo(internInfo);
+                User mentor = _userRepository.GetById(intern.MentorId);
+                //load mentor info
+                //internDTO.Load menor Info(user);
+                intern.LoadMentorInfo(mentor);
                 response.Add(intern);
             }
 
