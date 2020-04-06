@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Internship.API.Models;
-using Internship.API.Services;
+﻿using Internship.API.Models;
 using Internship.API.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace Internship.API.Controllers
 {
@@ -69,50 +66,90 @@ namespace Internship.API.Controllers
             }
 
         }
-        /// <summary>
-        /// Get All users in the application 
-        /// </summary>
-        /// <returns>
-        /// returns list with all registered users
-        /// </returns>
-        /// <response code="200">Returns all users.</response>
-        [HttpGet] 
-        public List<UserDTO> GetAll()
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+
+        [HttpGet]
+        ///Get All Users in the application   
+        public List<User> GetAll()
         {
             return _userService.GetAll();
         }
-
-
         /// <summary>
-        /// Get User by specific ID
+        /// Get User by spesific ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
         /// returns a User
         /// </returns>
-        /// <response code="200">Returns a user.</response>
         [HttpGet("{id:length(24)}")]
-        public ActionResult<UserDTO> GetById(string id)
+        public ActionResult<User> GetById(string id)
         {
             try
             {
                 var user = _userService.GetById(id);
                 if (user == null)
                 {
-                    return NotFound(new ApiError(404, "User not found", $"Id: {id}"));
+                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
                 }
-                else
-                {
-                    return user;
-                }
+                return user;
             }
             catch (Exception e)
             {
                 return BadRequest(new ApiError(400, "Request failed", e.Message));
             }
         }
+        /// <summary>
+        /// Update User by spesific ID
+        /// </summary>
+        ///         /// <remarks>
+        /// Sample request:
+        ///
+        ///     PUT api/users
+        ///     {
+        ///         	"userId": "5e73d8c697c01f208467265b",
+        ///             "firstName": "Juanita",
+        ///             "lastName": "Ruiz",
+        ///             "email": "Pedro.ruiz@hotmail.com",
+        ///             "status": "inactive"
+        ///     }
+        ///     
+        /// Sample error:
+        ///     
+        ///     {
+        ///         "code": 400,
+        ///         "description": ""User not found",
+        ///     }
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <returns>
+        /// returns a User
+        /// </returns>
+        /// <response code="200">Returns the user update.</response>
+        /// <response code="400">User not found</response>   
+        [HttpPut("{id:length(24)}")]
+        public ActionResult<User> Update(string id, UserDTO userIn)
+        {
+            try
+            {
+                var user = _userService.GetById(id);
 
-        
+                if (user == null)
+                {
+                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
+                }
+                else
+                {
 
+                    _userService.Update(id, userIn);
+                    return _userService.GetById(id);
+                }
+               
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiError(400, "Request failed", e.Message));
+            }
+        }
     }
 }
