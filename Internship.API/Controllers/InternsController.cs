@@ -60,8 +60,25 @@ namespace Internship.API.Controllers
         [HttpPost]
         public ActionResult<InternDTO> Create(InternDTO intern)
         {
-            
-            return _internService.Create(intern);
+            try
+            {
+                var newIntern = _internService.Create(intern);
+                if (newIntern == null)
+                {
+                    return BadRequest(new ApiError(404, "User or Mentor not found", $"please verify that the data is correct"));
+
+                }
+                else
+                {
+                    return _internService.Create(newIntern);
+                    
+
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiError(400, "Request failed", e.Message));
+            }
 
         }
 
