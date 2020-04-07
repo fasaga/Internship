@@ -72,6 +72,11 @@ namespace Internship.API
             services.AddSingleton(typeof(IMentorRepository), typeof(MentorRepository));
             services.AddSingleton(typeof(IMentorService), typeof(MentorService));
 
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new Controllers.JsonDateConverter());
+            });
+
             services.AddControllers().ConfigureApiBehaviorOptions(options =>
             {
                 options.InvalidModelStateResponseFactory = context =>
@@ -114,7 +119,7 @@ namespace Internship.API
                 var feature = context.Features.Get<IExceptionHandlerPathFeature>();
                 var exception = feature.Error;
 
-                var result = new ApiError( 400, exception.Message );
+                var result = new ApiError(400, exception.Message);
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = 400;
                 await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
