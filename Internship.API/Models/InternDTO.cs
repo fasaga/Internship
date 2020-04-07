@@ -33,8 +33,6 @@ namespace Internship.API.Models
         /// <summary>
         /// The date when the user left the company
         /// </summary>
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? EndDate { get; set; }
         /// <summary>
         /// Technology used by the user
