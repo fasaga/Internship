@@ -22,8 +22,6 @@ namespace Internship.API.Services
             _mapper = mapper;
         }
 
-
-
         public InternDTO Create(InternDTO internDTO)
         {
             Intern intern = new Intern();
@@ -96,7 +94,6 @@ namespace Internship.API.Services
         {
             //Retrieve all current interm in the database
             List<Intern> interns = _internRepository.GetAll();
-
             //Declare a new list that will contains the mapped intern
             List<InternDTO> response = new List<InternDTO>();
             foreach (Intern item in interns)

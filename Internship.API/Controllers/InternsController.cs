@@ -159,6 +159,15 @@ namespace Internship.API.Controllers
                 return BadRequest(new ApiError(400, "Request failed", e.Message));
             }
         }
-        
+        /// <summary>
+        /// Get all interns registered
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public List<InternDTO> GetAll()
+        {
+            return _internService.GetAll();
+        }
+
     }
 }
