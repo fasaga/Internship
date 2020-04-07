@@ -2,6 +2,7 @@
 using Internship.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace Internship.API.Controllers
 {
@@ -59,14 +60,6 @@ namespace Internship.API.Controllers
             return _internService.Create(intern);
 
         }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        [HttpPut]
-        public string Update(Intern intern)
-        {
-            return "Successful";
-        }
-
         /// <summary>
         /// Get Intern by specific ID
         /// </summary>
