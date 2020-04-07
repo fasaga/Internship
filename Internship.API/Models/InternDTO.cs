@@ -29,7 +29,7 @@ namespace Internship.API.Models
         /// <summary>
         /// The date when the user joined the company 
         /// </summary>
-        public DateTime? StartDate { get; set; }
+        public DateTime StartDate { get; set; }
         /// <summary>
         /// The date when the user left the company
         /// </summary>

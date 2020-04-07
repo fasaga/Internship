@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Internship.API.Models;
-using Internship.API.Services;
+﻿using Internship.API.Models;
 using Internship.API.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Internship.API.Controllers
 {
@@ -149,10 +144,23 @@ namespace Internship.API.Controllers
                     return NotFound(new ApiError(404, "User not found", $"Id: {id}"));
                 }
                 else
+                if (internIn.StartDate >= internIn.EndDate)
                 {
-                    _internService.Update(id, internIn);
-                    return _internService.GetInternById(id);
+                    return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
+
                 }
+                else if (internIn.EndDate == null)
+                {
+                    internIn.EndDate = internIn.StartDate.AddMonths(6);
+                }
+                else if (internIn.EndDate > internIn.StartDate.AddMonths(6))
+                {
+                    return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
+                }
+
+                _internService.Update(id, internIn);
+                return _internService.GetInternById(id);
+
             }
             catch (Exception e)
             {
