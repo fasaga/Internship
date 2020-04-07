@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Internship.API.Models;
-using Internship.API.Services;
+﻿using Internship.API.Models;
 using Internship.API.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace Internship.API.Controllers
 {
@@ -64,14 +60,6 @@ namespace Internship.API.Controllers
             return _internService.Create(intern);
 
         }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        [HttpPut]
-        public string Update(Intern intern)
-        {
-            return "Successful";
-        }
-
         /// <summary>
         /// Get Intern by specific ID
         /// </summary>
@@ -149,15 +137,40 @@ namespace Internship.API.Controllers
                     return NotFound(new ApiError(404, "User not found", $"Id: {id}"));
                 }
                 else
+                if (internIn.StartDate >= internIn.EndDate)
                 {
-                    _internService.Update(id, internIn);
-                    return _internService.GetInternById(id);
+                    return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
+
                 }
+                else if (internIn.EndDate == null)
+                {
+                    internIn.EndDate = internIn.StartDate.AddMonths(6);
+                }
+                else if (internIn.EndDate > internIn.StartDate.AddMonths(6))
+                {
+                    return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
+                }
+
+                _internService.Update(id, internIn);
+                return _internService.GetInternById(id);
+
             }
             catch (Exception e)
             {
                 return BadRequest(new ApiError(400, "Request failed", e.Message));
             }
         }
+        /// <summary>
+        /// Get all interns registered
+        /// </summary>
+        /// <returns>
+        /// a list of all the interns registered in the application 
+        /// </returns>
+        [HttpGet]
+        public List<InternDTO> GetAll()
+        {
+            return _internService.GetAll();
+        }
+
     }
 }

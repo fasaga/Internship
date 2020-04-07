@@ -29,9 +29,7 @@ namespace Internship.API.Models
         /// <summary>
         /// The date when the user joined the company 
         /// </summary>
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
-        public DateTime? StartDate { get; set; }
+        public DateTime StartDate { get; set; }
         /// <summary>
         /// The date when the user left the company
         /// </summary>
