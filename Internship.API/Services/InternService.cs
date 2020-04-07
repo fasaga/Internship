@@ -106,6 +106,7 @@ namespace Internship.API.Services
                 InternDTO intern = _mapper.Map<InternDTO>(item);
                 //Add the mapped inert to the response list
                 User internInfo = _userRepository.GetById(intern.UserId);
+                if (!internInfo.Status.Equals("active")) continue;
                 intern.LoadUserInfo(internInfo);
                 User mentor = _userRepository.GetById(intern.MentorId);
                 //load mentor info

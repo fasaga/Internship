@@ -31,7 +31,7 @@ namespace Internship.API.Repositories
         /// User-type method of bringing in all Users list
         /// </summary>
         public List<User> GetAll() =>
-           _users.Find(user => true).ToList();
+           _users.Find(user => true && user.Status.Equals("Active")).ToList();
 
         public User Get(string id) =>
             _users.Find<User>(user => user.UserId == id).FirstOrDefault();

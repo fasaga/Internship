@@ -63,6 +63,7 @@ namespace Internship.API.Services
             {
                 InternDTO internDTO = _mapper.Map<InternDTO>(intern);
                 User internInfo = _userRepository.GetById(internDTO.UserId);
+                if (!internInfo.Status.Equals("active")) continue;
                 internDTO.LoadUserInfo(internInfo);
                 internsDTO.Add(internDTO);
             }
@@ -85,6 +86,7 @@ namespace Internship.API.Services
             {
                 InternDTO internDTO = _mapper.Map<InternDTO>(intern);
                 User internInfo = _userRepository.GetById(internDTO.UserId);
+                if (!internInfo.Status.Equals("active")) continue;
                 internDTO.LoadUserInfo(internInfo);
                 internsDTO.Add(internDTO);
             }
