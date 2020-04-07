@@ -152,12 +152,25 @@ namespace Internship.API.Controllers
                     return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
                 }
                 else
+                if (userIn.EndDate == null && userIn.Role == "intern")
                 {
-
-                    _userService.Update(id, userIn);
-                    return _userService.GetById(id);
+                    userIn.EndDate = userIn.StartDate.AddMonths(6);
                 }
-               
+                else if (userIn.StartDate >= userIn.EndDate)
+                {
+                    return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
+
+                }
+                else if (userIn.EndDate > userIn.StartDate.AddMonths(6))
+                {
+                    return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
+                }
+
+
+                _userService.Update(id, userIn);
+                return _userService.GetById(id);
+
+
             }
             catch (Exception e)
             {
