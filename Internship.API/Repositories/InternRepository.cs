@@ -21,7 +21,7 @@ namespace Internship.API.Repositories
             _interns = database.GetCollection<Intern>(settings.InternsCollectionName);
         }
 
-        public List<Intern> Get() =>
+        public List<Intern> GetAll() =>
             _interns.Find(intern => true).ToList();
 
         public List<Intern> GetByMentorId(string mentorId) =>
