@@ -90,6 +90,10 @@ namespace Internship.API.Services
             //return the user of type UserDTO
             return internDTO;
         }
+        /// <summary>
+        ///  Get all interns registered in the app
+        /// </summary>
+        /// <returns>a list of all the interns registered in the application </returns>
         public List<InternDTO> GetAll()
         {
             //Retrieve all current interm in the database

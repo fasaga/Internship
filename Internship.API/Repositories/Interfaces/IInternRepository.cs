@@ -13,7 +13,10 @@ namespace Internship.API.Repositories.Interfaces
         Intern GetInternById(string id);
 
         Intern Update(string id, Intern internIn);
-
+        /// <summary>
+        /// a list of all the interns registered in the application 
+        /// </summary>
+        /// <returns></returns>
         List<Intern> GetAll();
     }
 }
