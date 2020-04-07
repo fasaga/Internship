@@ -1,8 +1,5 @@
 ﻿using Internship.API.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Internship.API.Repositories.Interfaces
 {
@@ -14,5 +11,12 @@ namespace Internship.API.Repositories.Interfaces
         List<Intern> GetByMentorId(string mentorId);
 
         Intern GetInternById(string id);
+
+        Intern Update(string id, Intern internIn);
+        /// <summary>
+        /// a list of all the interns registered in the application 
+        /// </summary>
+        /// <returns></returns>
+        List<Intern> GetAll();
     }
 }

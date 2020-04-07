@@ -1,8 +1,6 @@
 ﻿using Internship.API.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Internship.API.Repositories.Interfaces
 {
@@ -15,6 +13,12 @@ namespace Internship.API.Repositories.Interfaces
         /// </summary>
         List<User> GetAll();
         User GetById(string userId);
-        
+        /// <summary>
+        /// method of update of User 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userIn"></param>
+        /// <returns></returns>
+        User Update(string id, User userIn);
     }
 }

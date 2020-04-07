@@ -5,7 +5,6 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Internship.API.Repositories
 {
@@ -48,9 +47,19 @@ namespace Internship.API.Repositories
             _users.InsertOne(user);
             return user;
         }
-
-        public void Update(string id, User userIn) =>
+        /// <summary>
+        /// User-type method to Update a user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userIn"></param>
+        /// <returns>
+        /// reurns a user update 
+        /// </returns>
+        public User Update(string id, User userIn)
+        {
             _users.ReplaceOne(user => user.UserId == id, userIn);
+            return userIn;
+        }
 
         public void Remove(User userIn) =>
         _users.DeleteOne(user => user.UserId == userIn.UserId);
@@ -60,11 +69,10 @@ namespace Internship.API.Repositories
         public void Remove(string id) =>
           _users.DeleteOne(user => user.UserId == id);
 
-        public Boolean GetId(String userId) 
+        public Boolean GetId(String userId)
         {
-            
-           return _users.Find(user => user.UserId == userId).FirstOrDefault() != null;
-        }
 
+            return _users.Find(user => user.UserId == userId).FirstOrDefault() != null;
+        }
     }
 }

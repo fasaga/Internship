@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Internship.API.Models;
-using Internship.API.Services;
+﻿using Internship.API.Models;
 using Internship.API.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace Internship.API.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     public class InternsController : ControllerBase
     {
         private readonly IInternService _internService;
-        
+
         public InternsController(IInternService internService)
         {
             _internService = internService;
@@ -81,14 +77,6 @@ namespace Internship.API.Controllers
             }
 
         }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        [HttpPut]
-        public string Update( Intern intern)
-        {
-            return "Successful";
-        }
-
         /// <summary>
         /// Get Intern by specific ID
         /// </summary>
@@ -105,13 +93,12 @@ namespace Internship.API.Controllers
                 var intern = _internService.GetInternById(id);
                 if (intern == null)
                 {
-                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
-                    
+                    return NotFound(new ApiError(404, "User not found", $"Id: {id}"));
+
                 }
                 else
                 {
                     return intern;
-
                 }
             }
             catch (Exception e)
@@ -120,6 +107,87 @@ namespace Internship.API.Controllers
             }
 
         }
-        
+        /// <summary>
+        /// Update a Intern in the application for an existing User.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     PUT api/interns
+        ///     {
+        ///         "userId": "5e7a721921487c6b60743623",
+        ///         "firstName": "humberto",
+        ///         "lastName": "Del asdsd",
+        ///         "email": "asdasd@hotmail.com",
+        ///         "phone": "312-99-5487",
+        ///         "startDate": "0001-01-01T00:00:00Z",
+        ///         "endDate": "0001-01-01T00:00:00Z",
+        ///         "activeTechnology": "net",
+        ///         "status": "active",
+        ///         "role": "intern",
+        ///         "mentorId": "5e7a76db5fe004666c5e9702",
+        ///         "comments": "Comments",
+        ///         "technologies": ["net", "java"]
+        ///     }
+        ///     
+        /// Sample error:
+        ///     
+        ///     {
+        ///         "code": 400,
+        ///         "description": "Validation failed",
+        ///         "message": "The UserId field is required."
+        ///     }
+        /// </remarks>
+        /// <param name="id">Interns id</param>
+        /// <param name="internIn">Object of type Intern, Contains all intern's information to be update.</param>
+        /// <returns>The updated intern.</returns>
+        /// <response code="200">Returns the update intern.</response>
+        /// <response code="400">If the intern did not pass validation/ any other error</response>  
+        [HttpPut("{id:length(24)}")]
+        public ActionResult<InternDTO> Update(string id, InternDTO internIn)
+        {
+            try
+            {
+                var intern = _internService.GetInternById(id);
+                if (intern == null)
+                {
+                    return NotFound(new ApiError(404, "User not found", $"Id: {id}"));
+                }
+                else
+                if (internIn.StartDate >= internIn.EndDate)
+                {
+                    return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
+
+                }
+                else if (internIn.EndDate == null)
+                {
+                    internIn.EndDate = internIn.StartDate.AddMonths(6);
+                }
+                else if (internIn.EndDate > internIn.StartDate.AddMonths(6))
+                {
+                    return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
+                }
+
+                _internService.Update(id, internIn);
+                return _internService.GetInternById(id);
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiError(400, "Request failed", e.Message));
+            }
+        }
+        /// <summary>
+        /// Get all interns registered
+        /// </summary>
+        /// <returns>
+        /// a list of all the interns registered in the application 
+        /// </returns>
+        [HttpGet]
+        public List<InternDTO> GetAll()
+        {
+            return _internService.GetAll();
+        }
+
     }
 }

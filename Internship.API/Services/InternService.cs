@@ -22,8 +22,6 @@ namespace Internship.API.Services
             _mapper = mapper;
         }
 
-
-
         public InternDTO Create(InternDTO internDTO)
         {
             Intern intern = new Intern();
@@ -84,6 +82,44 @@ namespace Internship.API.Services
                 internDTO.LoadMentorInfo(mentor);
             }
             return internDTO;
+        }
+        public InternDTO Update(string id, InternDTO internIn)
+        {
+            User userinfo = _mapper.Map<User>(internIn);
+            User user = _userRepository.Update(id, userinfo);
+            Intern intern = _mapper.Map<Intern>(internIn);
+            //Map all info from userDTO to user
+            Intern getIntern = _internRepository.Update(id, intern);
+            //Map all info from the result to userDTO
+            InternDTO internDTO = _mapper.Map<InternDTO>(getIntern);
+            //return the user of type UserDTO
+            return internDTO;
+        }
+        /// <summary>
+        ///  Get all interns registered in the app
+        /// </summary>
+        /// <returns>a list of all the interns registered in the application </returns>
+        public List<InternDTO> GetAll()
+        {
+            //Retrieve all current interm in the database
+            List<Intern> interns = _internRepository.GetAll();
+            //Declare a new list that will contains the mapped intern
+            List<InternDTO> response = new List<InternDTO>();
+            foreach (Intern item in interns)
+            {
+                //Do the mapping
+                InternDTO intern = _mapper.Map<InternDTO>(item);
+                //Add the mapped inert to the response list
+                User internInfo = _userRepository.GetById(intern.UserId);
+                intern.LoadUserInfo(internInfo);
+                User mentor = _userRepository.GetById(intern.MentorId);
+                //load mentor info
+                //internDTO.Load menor Info(user);
+                intern.LoadMentorInfo(mentor);
+                response.Add(intern);
+            }
+
+            return response;
         }
     }
 }

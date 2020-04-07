@@ -1,17 +1,23 @@
 ﻿using Internship.API.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Internship.API.Services.Interfaces
 {
     public interface IUserService
     {
         UserDTO Create(UserDTO user);
-        UserDTO GetById(string userId);
-        List<UserDTO> GetAll();
-        
+        /// <summary>
+        /// User-type method of bringing in User list
+        /// </summary>
+        List<User> GetAll();
+        User GetById(string userId);
+        /// <summary>
+        /// method of update of User 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userIn"></param>
+        /// <returns></returns>
+        UserDTO Update(string id, UserDTO userIn);
     }
 }
 
