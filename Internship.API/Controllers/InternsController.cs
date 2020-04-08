@@ -165,7 +165,13 @@ namespace Internship.API.Controllers
                     return NotFound(new ApiError(404, "User not found", $"Id: {id}"));
                 }
                 else
-                if (internIn.StartDate >= internIn.EndDate)
+                if (intern != null && intern.MentorId == null)
+                {
+
+                    BadRequest(new ApiError(201, "User was updated without mentorId"));
+
+                }
+                else if (internIn.StartDate >= internIn.EndDate)
                 {
                     return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
 
@@ -178,12 +184,7 @@ namespace Internship.API.Controllers
                 {
                     internIn.EndDate = internIn.StartDate.AddMonths(6);
                 }
-                else if (intern != null && intern.MentorId == null)
-                {
-                    
-                    BadRequest(new ApiError(201, "User was updated without mentorId"));
-
-                }
+                
 
                 _internService.Update(id, internIn);
                 return _internService.GetInternById(id);
