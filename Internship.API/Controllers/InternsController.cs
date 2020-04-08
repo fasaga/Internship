@@ -12,10 +12,14 @@ namespace Internship.API.Controllers
     public class InternsController : ControllerBase
     {
         private readonly IInternService _internService;
+        private readonly IUserService _userService;
+        private readonly IMentorService _mentorService;
 
-        public InternsController(IInternService internService)
+        public InternsController(IInternService internService, IUserService userService, IMentorService mentorService)
         {
             _internService = internService;
+            _userService = userService;
+            _mentorService = mentorService;
         }
 
         /// <summary>
@@ -56,8 +60,32 @@ namespace Internship.API.Controllers
         [HttpPost]
         public ActionResult<InternDTO> Create(InternDTO intern)
         {
+            try
+            {
+                //validations section
+                //verify that the Userid is not the same as the Mentorid
+                if (intern.MentorId == intern.UserId)
+                    return BadRequest(new ApiError(400, "Mentor id cannot be equals to User id", "Mentor id value cannot be the same as User id"));
+                //Verify that the userid exists in the database
+                User user = _userService.GetById(intern.UserId);
+                if (user == null)
+                    return NotFound(new ApiError(404, "User not found or already exist, $Verify the information"));
+                //Verify that the mentor exists in the database
+                if (intern.MentorId != null && intern.MentorId != "")
+                {
+                    MentorDTO mentor = _mentorService.GetByMentorId(intern.MentorId);
+                    if (mentor == null)
+                        return NotFound(new ApiError(404, "Mentor not found", "Mentor does not exist"));
+                }
+                //call create method
+                var newIntern = _internService.Create(intern);
 
-            return _internService.Create(intern);
+                return newIntern;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiError(400, "Request failed", e.Message));
+            }
 
         }
         /// <summary>
@@ -131,25 +159,33 @@ namespace Internship.API.Controllers
         {
             try
             {
-                var intern = _internService.GetInternById(id);
-                if (intern == null)
+                //validations section
+                //verify that the Userid is not the same as the Mentorid
+                if (internIn.MentorId == internIn.UserId)
+                    return BadRequest(new ApiError(400, "Mentor id cannot be equals to User id", "Mentor id value cannot be the same as User id"));
+                //Verify that the userid exists in the database
+                User user = _userService.GetById(internIn.UserId);
+                if (user == null)
+                    return NotFound(new ApiError(404, "User not found, $Verify the information"));
+                //Verify that the mentor exists in the database
+                if (internIn.MentorId != null && internIn.MentorId != "")
                 {
-                    return NotFound(new ApiError(404, "User not found", $"Id: {id}"));
+                    MentorDTO mentor = _mentorService.GetByMentorId(internIn.MentorId);
+                    if (mentor == null)
+                        return NotFound(new ApiError(404, "Mentor not found", "Mentor does not exist"));
                 }
-                else
-                if (internIn.StartDate >= internIn.EndDate)
-                {
+                if(internIn.StartDate >= internIn.EndDate)
+                
                     return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
-
-                }
-                else if (internIn.EndDate == null)
-                {
-                    internIn.EndDate = internIn.StartDate.AddMonths(6);
-                }
-                else if (internIn.EndDate > internIn.StartDate.AddMonths(6))
-                {
+                
+                if (internIn.EndDate > internIn.StartDate.AddMonths(6))
                     return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
-                }
+                
+                
+                if (internIn.EndDate == null)
+                     internIn.EndDate = internIn.StartDate.AddMonths(6);
+                
+                
 
                 _internService.Update(id, internIn);
                 return _internService.GetInternById(id);
