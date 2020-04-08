@@ -170,13 +170,19 @@ namespace Internship.API.Controllers
                     return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
 
                 }
+                else if (internIn.EndDate > internIn.StartDate.AddMonths(6))
+                {
+                    return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
+                }
                 else if (internIn.EndDate == null)
                 {
                     internIn.EndDate = internIn.StartDate.AddMonths(6);
                 }
-                else if (internIn.EndDate > internIn.StartDate.AddMonths(6))
+                else if (intern != null && intern.MentorId == null)
                 {
-                    return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
+                    
+                    BadRequest(new ApiError(201, "User was updated without mentorId"));
+
                 }
 
                 _internService.Update(id, internIn);
