@@ -13,7 +13,7 @@ namespace Internship.API.Controllers
     {
         private readonly IInternService _internService;
 
-        public InternsController(IInternService internService)
+        public InternsController(IInternService internService, IMentorService mentorService)
         {
             _internService = internService;
         }
@@ -61,15 +61,26 @@ namespace Internship.API.Controllers
                 var newIntern = _internService.Create(intern);
                 if (newIntern == null)
                 {
-                    return BadRequest(new ApiError(404, "User or Mentor not found", $"please verify that the data is correct"));
+                    return BadRequest(new ApiError(404, "User not found or already exist", $"please verify the information"));
 
                 }
-                else
+                else if (newIntern != null && newIntern.MentorId != null) 
                 {
                     return _internService.Create(newIntern);
-                    
-
+                    //return BadRequest(new ApiError(200, "user was created successful"));
                 }
+                else if(newIntern != null && newIntern.MentorId == null)
+                {
+                    _internService.Create(newIntern);
+                    return BadRequest(new ApiError(201, "User was created without mentorId"));
+                
+                }
+                else 
+                {
+                    return BadRequest(new ApiError(404, "mentor not found", $"please verify the information"));
+                }
+
+                
             }
             catch (Exception e)
             {
