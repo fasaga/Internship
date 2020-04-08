@@ -28,34 +28,23 @@ namespace Internship.API.Services
         {
             Intern intern = new Intern();
             User user = _userRepository.GetById(internDTO.UserId);
-            User mentorId = _userRepository.GetById(internDTO.MentorId);
-            if (user != null && _internRepository.Get(internDTO.UserId) == null)
+            //Map all info from internDTO to intern
+            intern = _mapper.Map<Intern>(internDTO);
+            //Call create method to store the data, and assign the result in the intern variable
+            intern = _internRepository.Create(intern);
+            //Map all info from the result to userDTO
+            internDTO = _mapper.Map<InternDTO>(intern);
+            //load user info
+            //internDTO.Load user Info(user);
+            internDTO.LoadUserInfo(user);
+            if (internDTO.MentorId != null)
             {
-                //Map all info from internDTO to intern
-                intern = _mapper.Map<Intern>(internDTO);
-                //Call create method to store the data, and assign the result in the intern variable
-                intern = _internRepository.Create(intern);
-                //Map all info from the result to userDTO
-                internDTO = _mapper.Map<InternDTO>(intern);
-                //load user info
-                //internDTO.Load user Info(user);
-                internDTO.LoadUserInfo(user);
-                if (internDTO.MentorId != null)
-                {
-                    User mentor = _userRepository.GetById(internDTO.MentorId);
-                    //load mentor info
-                    //internDTO.Load menor Info(user);
-                    internDTO.LoadMentorInfo(mentor);
-                }
+                User mentor = _userRepository.GetById(internDTO.MentorId);
+                //load mentor info
+                internDTO.LoadMentorInfo(mentor);
+            }
 
-                //return created intern of type InternDTO
-                return internDTO;
-            }
-          
-            else
-            {
-                internDTO = null;
-            }
+            //return created intern of type InternDTO
             return internDTO;
         }
 
