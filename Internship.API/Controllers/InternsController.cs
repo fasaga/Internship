@@ -61,7 +61,7 @@ namespace Internship.API.Controllers
                 var newIntern = _internService.Create(intern);
                 if (newIntern == null)
                 {
-                    return BadRequest(new ApiError(404, "User not found or already exist", $"please verify the information"));
+                    return NotFound(new ApiError(404, "User not found or already exist, $Verify the information"));
 
                 }
                 else if (newIntern != null && newIntern.MentorId != null) 
