@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Internship.API.Models;
-using Internship.API.Services;
+﻿using Internship.API.Models;
 using Internship.API.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace Internship.API.Controllers
 {
@@ -61,6 +58,19 @@ namespace Internship.API.Controllers
         {
             try
             {
+                if (user.StartDate >= user.EndDate)
+                {
+                    return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
+
+                }
+                else if (user.Role == "intern" && user.EndDate == null)
+                {
+                    user.EndDate = user.StartDate.AddMonths(6);
+                }
+                else if (user.EndDate > user.StartDate.AddMonths(6))
+                {
+                    return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
+                }
                 return _userService.Create(user);
             }
             catch (Exception e)
@@ -69,6 +79,7 @@ namespace Internship.API.Controllers
             }
 
         }
+
         /// <summary>
         /// Get All users in the application 
         /// </summary>
@@ -81,7 +92,6 @@ namespace Internship.API.Controllers
         {
             return _userService.GetAll();
         }
-
 
         /// <summary>
         /// Get User by specific ID
@@ -97,7 +107,8 @@ namespace Internship.API.Controllers
             try
             {
                 var user = _userService.GetById(id);
-                if (user == null) {
+                if (user == null)
+                {
                     return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
                 }
                 return user;
@@ -107,8 +118,71 @@ namespace Internship.API.Controllers
                 return BadRequest(new ApiError(400, "Request failed", e.Message));
             }
         }
+        /// <summary>
+        /// Update User by spesific ID
+        /// </summary>
+        ///         /// <remarks>
+        /// Sample request:
+        ///
+        ///     PUT api/users
+        ///     {
+        ///         	"userId": "5e73d8c697c01f208467265b",
+        ///             "firstName": "Juanita",
+        ///             "lastName": "Ruiz",
+        ///             "email": "Pedro.ruiz@hotmail.com",
+        ///             "status": "inactive"
+        ///     }
+        ///     
+        /// Sample error:
+        ///     
+        ///     {
+        ///         "code": 400,
+        ///         "description": ""User not found",
+        ///     }
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <returns>
+        /// returns a User
+        /// </returns>
+        /// <response code="200">Returns the user update.</response>
+        /// <response code="400">User not found</response>   
+        [HttpPut("{id:length(24)}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public ActionResult<UserDTO> Update(string id, UserDTO userIn)
+        {
+            try
+            {
+                var user = _userService.GetById(id);
 
-        
+                if (user == null)
+                {
+                    return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
+                }
+                else
+                if (userIn.EndDate == null && userIn.Role == "intern")
+                {
+                    userIn.EndDate = userIn.StartDate.AddMonths(6);
+                }
+                else if (userIn.StartDate >= userIn.EndDate)
+                {
+                    return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
 
+                }
+                else if (userIn.EndDate > userIn.StartDate.AddMonths(6))
+                {
+                    return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
+                }
+
+
+                _userService.Update(id, userIn);
+                return _userService.GetById(id);
+
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiError(400, "Request failed", e.Message));
+            }
+        }
     }
 }

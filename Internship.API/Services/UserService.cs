@@ -2,11 +2,7 @@
 using Internship.API.Models;
 using Internship.API.Repositories.Interfaces;
 using Internship.API.Services.Interfaces;
-using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Internship.API.Services
 {
@@ -33,31 +29,32 @@ namespace Internship.API.Services
 
         public List<UserDTO> GetAll()
         {
-            //Retrieve all current user in the database
             List<User> users = _userRepository.GetAll();
-
-            //Declare a new list that will contains the mapped user
-            List<UserDTO> response = new List<UserDTO>();
-            foreach (User item in users) {
-                //Do the mapping
-                UserDTO user = _mapper.Map<UserDTO>(item);
-                //Add the mapped user to the response list
-                response.Add(user);
+            List<UserDTO> userDTOs = new List<UserDTO>();
+            foreach (var user in users)
+            {
+                UserDTO userDTO = _mapper.Map<UserDTO>(user);
+                userDTOs.Add(userDTO);
             }
-
-            return response;
+            return userDTOs;
         }
         public UserDTO GetById(string id)
         {
-            //Map all info from userDTO to user
             User user = _userRepository.GetById(id);
-            //Map all info from the result to userDTO
             UserDTO userDTO = _mapper.Map<UserDTO>(user);
-            //return the user of type UserDTO
             return userDTO;
         }
 
+        public UserDTO Update(string id, UserDTO userIn)
+        {
+            User userinfo = _mapper.Map<User>(userIn);
+            User user = _userRepository.Update(id, userinfo);
+            //Map all info from userDTO to user
+            User getuser = _userRepository.Update(id, user);
+            //Map all info from the result to userDTO
+            UserDTO userDTO = _mapper.Map<UserDTO>(getuser);
+            //return the user of type UserDTO
+            return userDTO;
+        }
     }
-    
-
 }
