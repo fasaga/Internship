@@ -88,7 +88,7 @@ namespace Internship.API.Controllers
         /// </returns>
         /// <response code="200">Returns all users.</response>
         [HttpGet] 
-        public List<User> GetAll()
+        public List<UserDTO> GetAll()
         {
             return _userService.GetAll();
         }
@@ -102,7 +102,7 @@ namespace Internship.API.Controllers
         /// </returns>
         /// <response code="200">Returns a user.</response>
         [HttpGet("{id:length(24)}")]
-        public ActionResult<User> GetById(string id)
+        public ActionResult<UserDTO> GetById(string id)
         {
             try
             {
@@ -147,7 +147,8 @@ namespace Internship.API.Controllers
         /// <response code="200">Returns the user update.</response>
         /// <response code="400">User not found</response>   
         [HttpPut("{id:length(24)}")]
-        public ActionResult<User> Update(string id, UserDTO userIn)
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public ActionResult<UserDTO> Update(string id, UserDTO userIn)
         {
             try
             {

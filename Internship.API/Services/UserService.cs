@@ -27,13 +27,22 @@ namespace Internship.API.Services
             return userDTO;
         }
 
-        public List<User> GetAll()
+        public List<UserDTO> GetAll()
         {
-            return _userRepository.GetAll();
+            List<User> users = _userRepository.GetAll();
+            List<UserDTO> userDTOs = new List<UserDTO>();
+            foreach (var user in users)
+            {
+                UserDTO userDTO = _mapper.Map<UserDTO>(user);
+                userDTOs.Add(userDTO);
+            }
+            return userDTOs;
         }
-        public User GetById(string id)
+        public UserDTO GetById(string id)
         {
-            return _userRepository.GetById(id);
+            User user = _userRepository.GetById(id);
+            UserDTO userDTO = _mapper.Map<UserDTO>(user);
+            return userDTO;
         }
 
         public UserDTO Update(string id, UserDTO userIn)

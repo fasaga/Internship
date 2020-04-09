@@ -67,7 +67,7 @@ namespace Internship.API.Controllers
                 if (intern.MentorId == intern.UserId)
                     return BadRequest(new ApiError(400, "Mentor id cannot be equals to User id", "Mentor id value cannot be the same as User id"));
                 //Verify that the userid exists in the database
-                User user = _userService.GetById(intern.UserId);
+                UserDTO user = _userService.GetById(intern.UserId);
                 if (user == null)
                     return NotFound(new ApiError(404, "User not found or already exist, $Verify the information"));
                 //Verify that the mentor exists in the database
@@ -96,7 +96,6 @@ namespace Internship.API.Controllers
         /// returns a Intern
         /// </returns>
         [HttpGet("{id:length(24)}")]
-        [ApiExplorerSettings(IgnoreApi = true)]
         public ActionResult<InternDTO> GetInternById(string id)
         {
             try
@@ -155,6 +154,7 @@ namespace Internship.API.Controllers
         /// <response code="200">Returns the update intern.</response>
         /// <response code="400">If the intern did not pass validation/ any other error</response>  
         [HttpPut("{id:length(24)}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public ActionResult<InternDTO> Update(string id, InternDTO internIn)
         {
             try
@@ -164,7 +164,7 @@ namespace Internship.API.Controllers
                 if (internIn.MentorId == internIn.UserId)
                     return BadRequest(new ApiError(400, "Mentor id cannot be equals to User id", "Mentor id value cannot be the same as User id"));
                 //Verify that the userid exists in the database
-                User user = _userService.GetById(internIn.UserId);
+                UserDTO user = _userService.GetById(internIn.UserId);
                 if (user == null)
                     return NotFound(new ApiError(404, "User not found, $Verify the information"));
                 //Verify that the mentor exists in the database

@@ -9,8 +9,8 @@ namespace Internship.API.Services.Interfaces
         /// <summary>
         /// User-type method of bringing in User list
         /// </summary>
-        List<User> GetAll();
-        User GetById(string userId);
+        List<UserDTO> GetAll();
+        UserDTO GetById(string userId);
         /// <summary>
         /// method of update of User 
         /// </summary>
