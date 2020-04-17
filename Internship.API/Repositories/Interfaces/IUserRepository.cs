@@ -20,5 +20,6 @@ namespace Internship.API.Repositories.Interfaces
         /// <param name="userIn"></param>
         /// <returns></returns>
         User Update(string id, User userIn);
+        void Remove(string id);
     }
 }

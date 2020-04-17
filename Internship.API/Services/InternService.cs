@@ -110,6 +110,10 @@ namespace Internship.API.Services
 
             return response;
         }
+        public void Remove(string id)
+        {
+            _internRepository.Remove(id);
+        }
     }
 }
 
