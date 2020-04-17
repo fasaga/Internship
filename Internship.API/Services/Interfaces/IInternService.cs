@@ -15,6 +15,10 @@ namespace Internship.API.Services.Interfaces
         /// Intern-type method of bringing in interns list
         /// </summary>
         List<InternDTO> GetAll();
+        /// <summary>
+        /// Intern-type method of delete intern
+        /// </summary>
+        /// <param name="id"></param>
         void Remove(string id);
 
     }

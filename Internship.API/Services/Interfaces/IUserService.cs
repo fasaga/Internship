@@ -18,6 +18,10 @@ namespace Internship.API.Services.Interfaces
         /// <param name="userIn"></param>
         /// <returns></returns>
         UserDTO Update(string id, UserDTO userIn);
+        /// <summary>
+        /// User-type method of delete User
+        /// </summary>
+        /// <param name="id"></param>
         void Remove(string id);
     }
 }

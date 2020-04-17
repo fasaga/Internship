@@ -18,6 +18,10 @@ namespace Internship.API.Repositories.Interfaces
         /// </summary>
         /// <returns></returns>
         List<Intern> GetAll();
+        /// <summary>
+        /// Intern-type method of delete intern
+        /// </summary>
+        /// <param name="id"></param>
         void Remove(string id);
     }
 }
