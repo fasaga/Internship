@@ -56,9 +56,11 @@ namespace Internship.API.Services
             //return the user of type UserDTO
             return userDTO;
         }
+
         public void Remove(string id)
         {
-             _userRepository.Remove(id);
+            _userRepository.Remove(id);
         }
+
     }
 }
