@@ -48,12 +48,15 @@ namespace Internship.API.Repositories
             _interns.ReplaceOne(intern => intern.UserId == id, internIn);
             return internIn;
         }
-
-        public void Remove(Intern internIn) =>
-        _interns.DeleteOne(intern => intern.UserId == internIn.UserId);
-
-        public void Remove(string id) =>
-          _interns.DeleteOne(intern => intern.UserId == id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        public void Remove(string id)
+        {
+             _interns.DeleteOne(intern => intern.UserId == id);
+            
+        }
 
         public Intern GetInternById(string id)
         {

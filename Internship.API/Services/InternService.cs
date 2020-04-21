@@ -116,6 +116,14 @@ namespace Internship.API.Services
 
             return response;
         }
+        /// <summary>
+        /// Remove user and interns data from the database 
+        /// </summary>
+        /// <param name="id"></param>
+        public void Remove(string id)
+        {
+            _internRepository.Remove(id);
+        }
     }
 }
 

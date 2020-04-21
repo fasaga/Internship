@@ -174,18 +174,18 @@ namespace Internship.API.Controllers
                     if (mentor == null)
                         return NotFound(new ApiError(404, "Mentor not found", "Mentor does not exist"));
                 }
-                if(internIn.StartDate >= internIn.EndDate)
-                
+                if (internIn.StartDate >= internIn.EndDate)
+
                     return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
-                
+
                 if (internIn.EndDate > internIn.StartDate.AddMonths(6))
                     return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
-                
-                
+
+
                 if (internIn.EndDate == null)
-                     internIn.EndDate = internIn.StartDate.AddMonths(6);
-                
-                
+                    internIn.EndDate = internIn.StartDate.AddMonths(6);
+
+
 
                 _internService.Update(id, internIn);
                 return _internService.GetInternById(id);
@@ -207,6 +207,30 @@ namespace Internship.API.Controllers
         {
             return _internService.GetAll();
         }
+        /// <summary>
+        /// Remove user and interns data from the database 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>returns the eliminated inern </returns>
+        [HttpDelete("{id:length(24)}")]
+        public ActionResult<InternDTO> Delete(string id) {
+         
+            var intern =  _internService.GetInternById(id);
+
+            if (intern==null)
+            {
+                return NotFound(new ApiError(404, "Intern not found", $"Id: {id}"));
+
+            }
+            ///Delete Intern information
+            _internService.Remove(id);
+            ///Remove the information of the intern in the user table 
+            _userService.Remove(id);
+            ///return the eliminated Intern
+            return intern;
+
+        }
 
     }
+
 }
