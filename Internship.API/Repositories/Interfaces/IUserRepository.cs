@@ -20,10 +20,7 @@ namespace Internship.API.Repositories.Interfaces
         /// <param name="userIn"></param>
         /// <returns></returns>
         User Update(string id, User userIn);
-        /// <summary>
-        /// User-type method of delete User
-        /// </summary>
-        /// <param name="id"></param>
+        void Remove(User userIn);
         void Remove(string id);
     }
 }
