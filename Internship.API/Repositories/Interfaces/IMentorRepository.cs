@@ -11,5 +11,6 @@ namespace Internship.API.Repositories.Interfaces
     {
         List<User> Get();
         User GetById(string mentorId);
+        public void Remove(string id);
     }
 }

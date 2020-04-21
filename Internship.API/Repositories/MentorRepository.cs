@@ -31,6 +31,7 @@ namespace Internship.API.Repositories
         public User GetById(string id) =>
             _mentors.Find<User>(user => user.UserId == id && user.Role.Equals("mentor")).FirstOrDefault();
 
-
+        public void Remove(string id) =>
+          _mentors.DeleteOne(mentor => mentor.UserId == id);
     }
 }

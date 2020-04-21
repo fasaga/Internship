@@ -94,7 +94,12 @@ namespace Internship.API.Services
             //Add the mapped mentor to the response list
             return mentor;
         }
-        
+        public void Remove(string id)
+        {
+            _mentorRepository.Remove(id);
+        }
+
+
     }
 }
 
