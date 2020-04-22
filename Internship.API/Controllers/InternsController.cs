@@ -63,6 +63,7 @@ namespace Internship.API.Controllers
             try
             {
                 //validations section
+
                 //verify that the Userid is not the same as the Mentorid
                 if (intern.MentorId == intern.UserId)
                     return BadRequest(new ApiError(400, "Mentor id cannot be equals to User id", "Mentor id value cannot be the same as User id"));
