@@ -13,10 +13,14 @@ namespace Internship.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IMentorService _mentorService;
+        private readonly IInternService _internService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IMentorService mentorService, IInternService internService)
         {
             _userService = userService;
+            _mentorService = mentorService;
+            _internService = internService;
         }
 
         /// <summary>
@@ -119,7 +123,7 @@ namespace Internship.API.Controllers
             }
         }
         /// <summary>
-        /// Update User by spesific ID
+        /// Update User by specific ID
         /// </summary>
         ///         /// <remarks>
         /// Sample request:
@@ -147,7 +151,6 @@ namespace Internship.API.Controllers
         /// <response code="200">Returns the user update.</response>
         /// <response code="400">User not found</response>   
         [HttpPut("{id:length(24)}")]
-        [ApiExplorerSettings(IgnoreApi = true)]
         public ActionResult<UserDTO> Update(string id, UserDTO userIn)
         {
             try
@@ -183,6 +186,54 @@ namespace Internship.API.Controllers
             {
                 return BadRequest(new ApiError(400, "Request failed", e.Message));
             }
+        }
+
+        /// <summary>
+        /// Delete User by specific ID
+        /// </summary>
+        ///         /// <remarks>
+        /// Sample request:
+        ///
+        ///     PUT api/users/"userid"
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Delete a User
+        /// return NoContent
+        /// </returns>
+        /// <response code="204">Returns no content.</response>
+        /// <response code="400">Cannot delete this User</response>   
+        [HttpDelete("{id:length(24)}")]
+        public IActionResult Delete(string id)
+        {
+            //Call Get user by id service
+            var user= _userService.GetById(id);
+            //Validate if the user exists 
+            if (user == null)
+            {
+                return NotFound();
+            }
+            //validate if the user is not an intern
+            if (user.Role == "intern")
+            {
+                return BadRequest(new ApiError(400, "Cannot delete this User", $"the user is a Intern try using inten / delete"));
+            }
+            //Validate if the user is a mentor
+            if (user.Role == "mentor")
+            {
+                //call Get interns by mentor id service
+                List<InternDTO> interns = _mentorService.GetInternsByMentorId(id);
+                //validate if the mentor does not have interns assigned
+                if (interns.Count > 0)
+                {
+                    return BadRequest(new ApiError(400, "Cannot delete this User", $"the user is a mentor with assigned interns"));
+                    
+                }
+            }
+            //Delete the user
+            _userService.Remove(user.UserId);
+
+            return NoContent();
         }
     }
 }

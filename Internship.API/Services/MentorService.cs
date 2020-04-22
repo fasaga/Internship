@@ -44,7 +44,9 @@ namespace Internship.API.Services
                 {
                     InternDTO internDTO = _mapper.Map<InternDTO>(intern);
                     User internInfo = _userRepository.GetById(internDTO.UserId);
-                    internDTO.LoadUserInfo(internInfo);
+                    if (internInfo == null) continue;
+                    if (internInfo != null)
+                        internDTO.LoadUserInfo(internInfo);
                     internsDTO.Add(internDTO);
                 }
                 mentor.Interns = internsDTO;
@@ -63,8 +65,11 @@ namespace Internship.API.Services
             {
                 InternDTO internDTO = _mapper.Map<InternDTO>(intern);
                 User internInfo = _userRepository.GetById(internDTO.UserId);
-                if (!internInfo.Status.Equals("active")) continue;
-                internDTO.LoadUserInfo(internInfo);
+                if (internInfo != null)
+                { 
+                    if (!internInfo.Status.Equals("active")) continue;
+                        internDTO.LoadUserInfo(internInfo); 
+                }
                 internsDTO.Add(internDTO);
             }
             return internsDTO;
@@ -86,15 +91,23 @@ namespace Internship.API.Services
             {
                 InternDTO internDTO = _mapper.Map<InternDTO>(intern);
                 User internInfo = _userRepository.GetById(internDTO.UserId);
-                if (!internInfo.Status.Equals("active")) continue;
-                internDTO.LoadUserInfo(internInfo);
+                if (internInfo != null)
+                {
+                    if (!internInfo.Status.Equals("active")) continue;
+                        internDTO.LoadUserInfo(internInfo);
+                }
                 internsDTO.Add(internDTO);
             }
             mentor.Interns = internsDTO;
             //Add the mapped mentor to the response list
             return mentor;
         }
-        
+        public void Remove(string id)
+        {
+            _mentorRepository.Remove(id);
+        }
+
+
     }
 }
 

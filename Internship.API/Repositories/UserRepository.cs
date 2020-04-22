@@ -31,7 +31,7 @@ namespace Internship.API.Repositories
         /// User-type method of bringing in all Users list
         /// </summary>
         public List<User> GetAll() =>
-           _users.Find(user => true && user.Status.Equals("Active")).ToList();
+           _users.Find(user => true && user.Status.Equals("active")).ToList();
 
         public User Get(string id) =>
             _users.Find<User>(user => user.UserId == id).FirstOrDefault();
@@ -64,10 +64,22 @@ namespace Internship.API.Repositories
         public void Remove(User userIn) =>
         _users.DeleteOne(user => user.UserId == userIn.UserId);
 
-        public User GetById(string id) =>
-            _users.Find<User>(user => user.UserId == id).FirstOrDefault();
-        public void Remove(string id) =>
-          _users.DeleteOne(user => user.UserId == id);
+        public User GetById(string id) {
+            if (id == null || id.Trim().Equals("")) return null;
+            try
+            {
+                return _users.Find<User>(user => user.UserId == id).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+       
+        public void Remove(string id)
+        {
+            _users.DeleteOne(user => user.UserId == id);
+        }
 
         public Boolean GetId(String userId)
         {

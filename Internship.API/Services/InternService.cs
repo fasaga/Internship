@@ -60,14 +60,16 @@ namespace Internship.API.Services
                 User user = _userRepository.GetById(internDTO.UserId);
                 //load mentor info
                 //internDTO.Load menor Info(user);
-                internDTO.LoadUserInfo(user);
+                if (user != null)
+                    internDTO.LoadUserInfo(user);
             }
             if (internDTO.MentorId != null)
             {
                 User mentor = _userRepository.GetById(internDTO.MentorId);
                 //load mentor info
                 //internDTO.Load menor Info(user);
-                internDTO.LoadMentorInfo(mentor);
+                if (mentor != null)
+                    internDTO.LoadMentorInfo(mentor);
             }
             return internDTO;
         }
@@ -99,16 +101,26 @@ namespace Internship.API.Services
                 InternDTO intern = _mapper.Map<InternDTO>(item);
                 //Add the mapped inert to the response list
                 User internInfo = _userRepository.GetById(intern.UserId);
+                if (internInfo == null) continue;
                 if (!internInfo.Status.Equals("active")) continue;
-                intern.LoadUserInfo(internInfo);
+                    intern.LoadUserInfo(internInfo);
                 User mentor = _userRepository.GetById(intern.MentorId);
                 //load mentor info
                 //internDTO.Load menor Info(user);
-                intern.LoadMentorInfo(mentor);
+                if (mentor != null)
+                    intern.LoadMentorInfo(mentor);
                 response.Add(intern);
             }
 
             return response;
+        }
+        /// <summary>
+        /// Remove user and interns data from the database 
+        /// </summary>
+        /// <param name="id"></param>
+        public void Remove(string id)
+        {
+            _internRepository.Remove(id);
         }
     }
 }
