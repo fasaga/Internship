@@ -226,8 +226,7 @@ namespace Internship.API.Controllers
             _internService.Remove(id);
             ///Remove the information of the intern in the user table 
             _userService.Remove(id);
-            ///return the eliminated Intern
-            return intern;
+            return NoContent();
 
         }
 
