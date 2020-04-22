@@ -85,7 +85,7 @@ namespace Internship.API
                     string error = string.Join(" ", errors);
                     var result = new BadRequestObjectResult(new ApiError(400, "Validation failed", error));
                     if(error.Contains("The JSON value could not be converted"))
-                        result = new BadRequestObjectResult(new ApiError(400, "Validation failed", "One or more fields contains invalid data type values, please review the documentation."));
+                        result = new BadRequestObjectResult(new ApiError(400, "Invalid data type value", "One or more fields contains invalid data type values, please review the documentation."));
 
                     return result;
                 };
