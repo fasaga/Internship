@@ -44,6 +44,7 @@ namespace Internship.API.Services
                 {
                     InternDTO internDTO = _mapper.Map<InternDTO>(intern);
                     User internInfo = _userRepository.GetById(internDTO.UserId);
+                    if (internInfo == null) continue;
                     if (internInfo != null)
                         internDTO.LoadUserInfo(internInfo);
                     internsDTO.Add(internDTO);

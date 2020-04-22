@@ -123,7 +123,7 @@ namespace Internship.API.Controllers
             }
         }
         /// <summary>
-        /// Update User by spesific ID
+        /// Update User by specific ID
         /// </summary>
         ///         /// <remarks>
         /// Sample request:
@@ -151,7 +151,6 @@ namespace Internship.API.Controllers
         /// <response code="200">Returns the user update.</response>
         /// <response code="400">User not found</response>   
         [HttpPut("{id:length(24)}")]
-        [ApiExplorerSettings(IgnoreApi = true)]
         public ActionResult<UserDTO> Update(string id, UserDTO userIn)
         {
             try
@@ -202,7 +201,7 @@ namespace Internship.API.Controllers
         /// Delete a User
         /// return NoContent
         /// </returns>
-        /// <response code="200">Returns the user update.</response>
+        /// <response code="204">Returns no content.</response>
         /// <response code="400">Cannot delete this User</response>   
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)

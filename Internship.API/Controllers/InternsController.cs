@@ -154,7 +154,6 @@ namespace Internship.API.Controllers
         /// <response code="200">Returns the update intern.</response>
         /// <response code="400">If the intern did not pass validation/ any other error</response>  
         [HttpPut("{id:length(24)}")]
-        [ApiExplorerSettings(IgnoreApi = true)]
         public ActionResult<InternDTO> Update(string id, InternDTO internIn)
         {
             try
@@ -208,10 +207,15 @@ namespace Internship.API.Controllers
             return _internService.GetAll();
         }
         /// <summary>
-        /// Remove user and interns data from the database 
+        /// Remove intern data and their related user from the database 
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>returns the eliminated inern </returns>
+        /// <returns>
+        /// Delete a Intern and their user
+        /// return NoContent
+        /// </returns>
+        /// <response code="204">Returns no content.</response>
+        /// <response code="400">Cannot delete this User</response>   
         [HttpDelete("{id:length(24)}")]
         public ActionResult<InternDTO> Delete(string id) {
          
