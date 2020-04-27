@@ -79,8 +79,7 @@ namespace Internship.API.Controllers
                 }
                 //call create method
                 var newIntern = _internService.Create(intern);
-
-                return newIntern;
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status201Created,newIntern);
             }
             catch (Exception e)
             {
