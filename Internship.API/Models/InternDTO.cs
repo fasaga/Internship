@@ -66,19 +66,19 @@ namespace Internship.API.Models
         /// <summary>
         /// Intern's english level at the beginning
         /// </summary>
-        public int InitialEnglishLevel { get; set; }
+        public int? InitialEnglishLevel { get; set; }
         /// <summary>
         /// Intern's english level at the end
         /// </summary>
-        public int FinalEnglishLevel { get; set; }
+        public int? FinalEnglishLevel { get; set; }
         /// <summary>
         /// If the Intern was hired in the internship period (true or false)
         /// </summary>
-        public bool Hired { get; set; }
+        public bool? Hired { get; set; }
         /// <summary>
         /// Sprint where the intern was hired
         /// </summary>
-        public int HiredSprintId { get; set; }
+        public int? HiredSprintId { get; set; }
         /// <summary>
         /// Location of the company that Intern works
         /// </summary>

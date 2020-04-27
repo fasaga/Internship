@@ -70,6 +70,8 @@ namespace Internship.API.Controllers
                 UserDTO user = _userService.GetById(intern.UserId);
                 if (user == null)
                     return NotFound(new ApiError(404, "User not found or already exist, $Verify the information"));
+                if (user.Role != "intern")
+                    return NotFound(new ApiError(404, "User is not an intern, Verify the information"));
                 //Verify that the mentor exists in the database
                 if (intern.MentorId != null && intern.MentorId != "")
                 {
@@ -165,6 +167,8 @@ namespace Internship.API.Controllers
                 UserDTO user = _userService.GetById(internIn.UserId);
                 if (user == null)
                     return NotFound(new ApiError(404, "User not found, $Verify the information"));
+                if (user.Role != "intern")
+                    return NotFound(new ApiError(404, "User is not an intern, Verify the information"));
                 //Verify that the mentor exists in the database
                 if (internIn.MentorId != null && internIn.MentorId != "")
                 {

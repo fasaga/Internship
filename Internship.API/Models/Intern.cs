@@ -39,22 +39,22 @@ namespace Internship.API.Models
         /// Intern's english level at the beginning
         /// </summary>
         [BsonElement("initial_english_level")]
-        public int InitialEnglishLevel { get; set; }
+        public int? InitialEnglishLevel { get; set; }
         /// <summary>
         /// Intern's english level at the end
         /// </summary>
         [BsonElement("final_english_level")]
-        public int FinalEnglishLevel { get; set; }
+        public int? FinalEnglishLevel { get; set; }
         /// <summary>
         /// If the Intern was hired in the internship period (true or false)
         /// </summary>
         [BsonElement("hired")]
-        public bool Hired { get; set; }
+        public bool? Hired { get; set; }
         /// <summary>
         /// Sprint where the intern was hired
         /// </summary>
         [BsonElement("hired_sprint_id")]
-        public int HiredSprintId { get; set; }
+        public int? HiredSprintId { get; set; }
         /// <summary>
         /// Location of the company that Intern works
         /// </summary>
