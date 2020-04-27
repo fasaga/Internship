@@ -2,6 +2,7 @@
 using Internship.API.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 
@@ -62,6 +63,16 @@ namespace Internship.API.Controllers
         {
             try
             {
+                ///change to lowercase
+                user.Status = user.Status.ToLower();
+                user.Role = user.Role.ToLower();
+                ///Valid only active or inactive
+                if (user.Status != "active" && user.Status != "inactive")
+                {
+                    return BadRequest(new ApiError(400, "the status must be active or inactive"));
+
+                }
+
                 if (user.StartDate >= user.EndDate)
                 {
                     return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
@@ -163,6 +174,15 @@ namespace Internship.API.Controllers
                     return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
                 }
                 else
+                ///change to lowercase
+                userIn.Status = userIn.Status.ToLower();
+                userIn.Role = userIn.Role.ToLower();
+                ///Valid only active or inactive
+                if (userIn.Status != "active" && userIn.Status != "inactive")
+                {
+                    return BadRequest(new ApiError(400, "the status must be active or inactive"));
+
+                }
                 if (userIn.EndDate == null && userIn.Role == "intern")
                 {
                     userIn.EndDate = userIn.StartDate.AddMonths(6);

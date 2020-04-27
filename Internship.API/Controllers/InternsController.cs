@@ -63,6 +63,15 @@ namespace Internship.API.Controllers
             try
             {
                 //validations section
+                ///change to lowercase
+                intern.Status = intern.Status.ToLower();
+                intern.Role = intern.Role.ToLower();
+                ///Valid only active or inactive
+                if (intern.Status != "active" && intern.Status != "inactive")
+                {
+                    return BadRequest(new ApiError(400, "the status must be active or inactive"));
+
+                }
                 //verify that the Userid is not the same as the Mentorid
                 if (intern.MentorId == intern.UserId)
                     return BadRequest(new ApiError(400, "Mentor id cannot be equals to User id", "Mentor id value cannot be the same as User id"));
@@ -160,6 +169,16 @@ namespace Internship.API.Controllers
             try
             {
                 //validations section
+                //validations section
+                ///change to lowercase
+                internIn.Status = internIn.Status.ToLower();
+                internIn.Role = internIn.Role.ToLower();
+                ///Valid only active or inactive
+                if (internIn.Status != "active" && internIn.Status != "inactive")
+                {
+                    return BadRequest(new ApiError(400, "the status must be active or inactive"));
+
+                }
                 //verify that the Userid is not the same as the Mentorid
                 if (internIn.MentorId == internIn.UserId)
                     return BadRequest(new ApiError(400, "Mentor id cannot be equals to User id", "Mentor id value cannot be the same as User id"));
