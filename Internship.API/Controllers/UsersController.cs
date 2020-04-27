@@ -75,7 +75,8 @@ namespace Internship.API.Controllers
                 {
                     return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
                 }
-                return _userService.Create(user);
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status201Created,_userService.Create(user));
+               
             }
             catch (Exception e)
             {
