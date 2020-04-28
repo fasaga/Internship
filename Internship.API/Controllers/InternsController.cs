@@ -78,6 +78,15 @@ namespace Internship.API.Controllers
                     return BadRequest(new ApiError(400, "Invalid characters", resourceManagerCheck));
 
                 //validations section
+                ///change to lowercase
+                intern.Status = intern.Status.ToLower();
+                intern.Role = intern.Role.ToLower();
+                ///Valid only active or inactive
+                if (intern.Status != "active" && intern.Status != "inactive")
+                {
+                    return BadRequest(new ApiError(400, "the status must be active or inactive"));
+
+                }
                 //verify that the Userid is not the same as the Mentorid
                 if (intern.MentorId == intern.UserId)
                     return BadRequest(new ApiError(400, "Mentor id cannot be equals to User id", "Mentor id value cannot be the same as User id"));
@@ -85,6 +94,8 @@ namespace Internship.API.Controllers
                 UserDTO user = _userService.GetById(intern.UserId);
                 if (user == null)
                     return NotFound(new ApiError(404, "User not found or already exist, $Verify the information"));
+                if (user.Role != "intern")
+                    return NotFound(new ApiError(404, "User is not an intern, Verify the information"));
                 //Verify that the mentor exists in the database
                 if (intern.MentorId != null && intern.MentorId != "")
                 {
@@ -94,8 +105,7 @@ namespace Internship.API.Controllers
                 }
                 //call create method
                 var newIntern = _internService.Create(intern);
-
-                return newIntern;
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status201Created,newIntern);
             }
             catch (Exception e)
             {
@@ -189,6 +199,16 @@ namespace Internship.API.Controllers
                     return BadRequest(new ApiError(400, "Invalid characters", resourceManagerCheck));
 
                 //validations section
+                //validations section
+                ///change to lowercase
+                internIn.Status = internIn.Status.ToLower();
+                internIn.Role = internIn.Role.ToLower();
+                ///Valid only active or inactive
+                if (internIn.Status != "active" && internIn.Status != "inactive")
+                {
+                    return BadRequest(new ApiError(400, "the status must be active or inactive"));
+
+                }
                 //verify that the Userid is not the same as the Mentorid
                 if (internIn.MentorId == internIn.UserId)
                     return BadRequest(new ApiError(400, "Mentor id cannot be equals to User id", "Mentor id value cannot be the same as User id"));
@@ -196,6 +216,8 @@ namespace Internship.API.Controllers
                 UserDTO user = _userService.GetById(internIn.UserId);
                 if (user == null)
                     return NotFound(new ApiError(404, "User not found, $Verify the information"));
+                if (user.Role != "intern")
+                    return NotFound(new ApiError(404, "User is not an intern, Verify the information"));
                 //Verify that the mentor exists in the database
                 if (internIn.MentorId != null && internIn.MentorId != "")
                 {
@@ -226,10 +248,10 @@ namespace Internship.API.Controllers
             }
         }
         /// <summary>
-        /// Get all interns registered
+        /// Get all active interns registered
         /// </summary>
         /// <returns>
-        /// a list of all the interns registered in the application 
+        /// a list of all the interns(only active interns) registered in the application 
         /// </returns>
         [HttpGet]
         public List<InternDTO> GetAll()
