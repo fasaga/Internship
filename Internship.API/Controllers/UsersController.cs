@@ -63,6 +63,33 @@ namespace Internship.API.Controllers
         {
             try
             {
+                SpecialCharacters specialCharacters = new SpecialCharacters();
+                var FirstNameCheck = specialCharacters.CheckSpecialCharacters(user.FirstName, "CharsSpecial");
+                var LastNameCheck = specialCharacters.CheckSpecialCharacters(user.LastName, "CharsSpecial");
+                var EmailCheck = specialCharacters.CheckSpecialCharacters(user.Email, "CharsEmail");
+                var PhoneCheck = specialCharacters.CheckSpecialCharacters(user.Phone, "CharsPhone");
+                var StartDateCheck = specialCharacters.CheckFomatDate(user.StartDate);
+                var EndDateCheck = specialCharacters.CheckFomatDate(user.EndDate);
+                var StatusCheck = specialCharacters.CheckSpecialCharacters(user.Status, "CharsSpecial");
+                var RoleCheck = specialCharacters.CheckSpecialCharacters(user.Role, "CharsSpecial");
+
+                if (FirstNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", FirstNameCheck));
+                else if (LastNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LastNameCheck));
+                else if (EmailCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", EmailCheck));
+                else if (PhoneCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", PhoneCheck));
+                else if (StartDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", user.StartDate+ ": Check the documentation about the date. Format: yyyy-MM-ddT00:00:00Z"));
+                else if (user.EndDate!=null&&EndDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", user.EndDate+ ": Check the documentation about the date. Format: yyyy-MM-ddT00:00:00Z"));
+                else if (StatusCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", StatusCheck));
+                else if (RoleCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", RoleCheck));
+
                 ///change to lowercase
                 user.Status = user.Status.ToLower();
                 user.Role = user.Role.ToLower();
@@ -167,6 +194,33 @@ namespace Internship.API.Controllers
         {
             try
             {
+                SpecialCharacters specialCharacters = new SpecialCharacters();
+                var FirstNameCheck = specialCharacters.CheckSpecialCharacters(userIn.FirstName, "CharsSpecial");
+                var LastNameCheck = specialCharacters.CheckSpecialCharacters(userIn.LastName, "CharsSpecial");
+                var EmailCheck = specialCharacters.CheckSpecialCharacters(userIn.Email, "CharsEmail");
+                var PhoneCheck = specialCharacters.CheckSpecialCharacters(userIn.Phone, "CharsPhone");
+                var StartDateCheck = specialCharacters.CheckFomatDate(userIn.StartDate);
+                var EndDateCheck = specialCharacters.CheckFomatDate(userIn.EndDate);
+                var StatusCheck = specialCharacters.CheckSpecialCharacters(userIn.Status, "CharsSpecial");
+                var RoleCheck = specialCharacters.CheckSpecialCharacters(userIn.Role, "CharsSpecial");
+
+                if (FirstNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", FirstNameCheck));
+                else if (LastNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LastNameCheck));
+                else if (EmailCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", EmailCheck));
+                else if (PhoneCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", PhoneCheck));
+                else if (StartDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", userIn.StartDate + ": Check the documentation about the date. Format: yyyy-MM-ddT00:00:00Z"));
+                else if (userIn.EndDate != null && EndDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", userIn.EndDate + ": Check the documentation about the date. Format: yyyy-MM-ddT00:00:00Z"));
+                else if (StatusCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", StatusCheck));
+                else if (RoleCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", RoleCheck));
+
                 var user = _userService.GetById(id);
 
                 if (user == null)

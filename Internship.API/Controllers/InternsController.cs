@@ -62,6 +62,21 @@ namespace Internship.API.Controllers
         {
             try
             {
+                SpecialCharacters specialCharacters = new SpecialCharacters();
+                var ProjectCheck = specialCharacters.CheckSpecialCharacters(intern.Project, "CharsSpecial");
+                var TeamCheck = specialCharacters.CheckSpecialCharacters(intern.Team, "CharsSpecial");
+                var LeadCheck = specialCharacters.CheckSpecialCharacters(intern.Lead, "CharsSpecial");
+                var resourceManagerCheck = specialCharacters.CheckSpecialCharacters(intern.ResourceManager, "CharsSpecial");
+
+                if (ProjectCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", ProjectCheck));
+                else if (TeamCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", TeamCheck));
+                else if (LeadCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LeadCheck));
+                else if (resourceManagerCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", resourceManagerCheck));
+
                 //validations section
                 ///change to lowercase
                 intern.Status = intern.Status.ToLower();
@@ -168,6 +183,21 @@ namespace Internship.API.Controllers
         {
             try
             {
+                SpecialCharacters specialCharacters = new SpecialCharacters();
+                var ProjectCheck = specialCharacters.CheckSpecialCharacters(internIn.Project, "CharsSpecial");
+                var TeamCheck = specialCharacters.CheckSpecialCharacters(internIn.Team, "CharsSpecial");
+                var LeadCheck = specialCharacters.CheckSpecialCharacters(internIn.Lead, "CharsSpecial");
+                var resourceManagerCheck = specialCharacters.CheckSpecialCharacters(internIn.ResourceManager, "CharsSpecial");
+
+                if (ProjectCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", ProjectCheck));
+                else if (TeamCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", TeamCheck));
+                else if (LeadCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LeadCheck));
+                else if (resourceManagerCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", resourceManagerCheck));
+
                 //validations section
                 //validations section
                 ///change to lowercase
