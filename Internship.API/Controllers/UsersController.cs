@@ -97,12 +97,12 @@ namespace Internship.API.Controllers
         }
 
         /// <summary>
-        /// Get All users in the application 
+        /// Get All active users in the application 
         /// </summary>
         /// <returns>
-        /// returns list with all registered users
+        /// returns list with all registered users(only active users)
         /// </returns>
-        /// <response code="200">Returns all users.</response>
+        /// <response code="200">Returns all active users.</response>
         [HttpGet] 
         public List<UserDTO> GetAll()
         {

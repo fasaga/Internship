@@ -218,10 +218,10 @@ namespace Internship.API.Controllers
             }
         }
         /// <summary>
-        /// Get all interns registered
+        /// Get all active interns registered
         /// </summary>
         /// <returns>
-        /// a list of all the interns registered in the application 
+        /// a list of all the interns(only active interns) registered in the application 
         /// </returns>
         [HttpGet]
         public List<InternDTO> GetAll()
