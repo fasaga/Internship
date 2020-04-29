@@ -82,9 +82,9 @@ namespace Internship.API.Controllers
                 else if (PhoneCheck != "true")
                     return BadRequest(new ApiError(400, "Invalid characters", PhoneCheck));
                 else if (StartDateCheck != true)
-                    return BadRequest(new ApiError(400, "Invalid date format", user.StartDate+ ": Check the documentation about the date. Format: yyyy-MM-ddT00:00:00Z"));
+                    return BadRequest(new ApiError(400, "Invalid date format", user.StartDate+ ": Check the documentation about the date. Format: mm/dd/yyyy"));
                 else if (user.EndDate!=null&&EndDateCheck != true)
-                    return BadRequest(new ApiError(400, "Invalid date format", user.EndDate+ ": Check the documentation about the date. Format: yyyy-MM-ddT00:00:00Z"));
+                    return BadRequest(new ApiError(400, "Invalid date format", user.EndDate+ ": Check the documentation about the date. Format: mm/dd/yyyy"));
                 else if (StatusCheck != "true")
                     return BadRequest(new ApiError(400, "Invalid characters", StatusCheck));
                 else if (RoleCheck != "true")
@@ -213,9 +213,9 @@ namespace Internship.API.Controllers
                 else if (PhoneCheck != "true")
                     return BadRequest(new ApiError(400, "Invalid characters", PhoneCheck));
                 else if (StartDateCheck != true)
-                    return BadRequest(new ApiError(400, "Invalid date format", userIn.StartDate + ": Check the documentation about the date. Format: yyyy-MM-ddT00:00:00Z"));
+                    return BadRequest(new ApiError(400, "Invalid date format", userIn.StartDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
                 else if (userIn.EndDate != null && EndDateCheck != true)
-                    return BadRequest(new ApiError(400, "Invalid date format", userIn.EndDate + ": Check the documentation about the date. Format: yyyy-MM-ddT00:00:00Z"));
+                    return BadRequest(new ApiError(400, "Invalid date format", userIn.EndDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
                 else if (StatusCheck != "true")
                     return BadRequest(new ApiError(400, "Invalid characters", StatusCheck));
                 else if (RoleCheck != "true")

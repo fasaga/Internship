@@ -63,12 +63,36 @@ namespace Internship.API.Controllers
             try
             {
                 SpecialCharacters specialCharacters = new SpecialCharacters();
+                var FirstNameCheck = specialCharacters.CheckSpecialCharacters(intern.FirstName, "CharsSpecial");
+                var LastNameCheck = specialCharacters.CheckSpecialCharacters(intern.LastName, "CharsSpecial");
+                var EmailCheck = specialCharacters.CheckSpecialCharacters(intern.Email, "CharsEmail");
+                var PhoneCheck = specialCharacters.CheckSpecialCharacters(intern.Phone, "CharsPhone");
+                var StartDateCheck = specialCharacters.CheckFomatDate(intern.StartDate);
+                var EndDateCheck = specialCharacters.CheckFomatDate(intern.EndDate);
+                var StatusCheck = specialCharacters.CheckSpecialCharacters(intern.Status, "CharsSpecial");
+                var RoleCheck = specialCharacters.CheckSpecialCharacters(intern.Role, "CharsSpecial");
                 var ProjectCheck = specialCharacters.CheckSpecialCharacters(intern.Project, "CharsSpecial");
                 var TeamCheck = specialCharacters.CheckSpecialCharacters(intern.Team, "CharsSpecial");
                 var LeadCheck = specialCharacters.CheckSpecialCharacters(intern.Lead, "CharsSpecial");
                 var resourceManagerCheck = specialCharacters.CheckSpecialCharacters(intern.ResourceManager, "CharsSpecial");
 
-                if (ProjectCheck != "true")
+                if (FirstNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", FirstNameCheck));
+                else if (LastNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LastNameCheck));
+                else if (EmailCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", EmailCheck));
+                else if (PhoneCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", PhoneCheck));
+                else if (StartDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", intern.StartDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (intern.EndDate != null && EndDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", intern.EndDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (StatusCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", StatusCheck));
+                else if (RoleCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", RoleCheck));
+                else if (ProjectCheck != "true")
                     return BadRequest(new ApiError(400, "Invalid characters", ProjectCheck));
                 else if (TeamCheck != "true")
                     return BadRequest(new ApiError(400, "Invalid characters", TeamCheck));
@@ -184,12 +208,36 @@ namespace Internship.API.Controllers
             try
             {
                 SpecialCharacters specialCharacters = new SpecialCharacters();
+                var FirstNameCheck = specialCharacters.CheckSpecialCharacters(internIn.FirstName, "CharsSpecial");
+                var LastNameCheck = specialCharacters.CheckSpecialCharacters(internIn.LastName, "CharsSpecial");
+                var EmailCheck = specialCharacters.CheckSpecialCharacters(internIn.Email, "CharsEmail");
+                var PhoneCheck = specialCharacters.CheckSpecialCharacters(internIn.Phone, "CharsPhone");
+                var StartDateCheck = specialCharacters.CheckFomatDate(internIn.StartDate);
+                var EndDateCheck = specialCharacters.CheckFomatDate(internIn.EndDate);
+                var StatusCheck = specialCharacters.CheckSpecialCharacters(internIn.Status, "CharsSpecial");
+                var RoleCheck = specialCharacters.CheckSpecialCharacters(internIn.Role, "CharsSpecial");
                 var ProjectCheck = specialCharacters.CheckSpecialCharacters(internIn.Project, "CharsSpecial");
                 var TeamCheck = specialCharacters.CheckSpecialCharacters(internIn.Team, "CharsSpecial");
                 var LeadCheck = specialCharacters.CheckSpecialCharacters(internIn.Lead, "CharsSpecial");
                 var resourceManagerCheck = specialCharacters.CheckSpecialCharacters(internIn.ResourceManager, "CharsSpecial");
 
-                if (ProjectCheck != "true")
+                if (FirstNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", FirstNameCheck));
+                else if (LastNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LastNameCheck));
+                else if (EmailCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", EmailCheck));
+                else if (PhoneCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", PhoneCheck));
+                else if (StartDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", internIn.StartDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (internIn.EndDate != null && EndDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", internIn.EndDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (StatusCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", StatusCheck));
+                else if (RoleCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", RoleCheck));
+                else if (ProjectCheck != "true")
                     return BadRequest(new ApiError(400, "Invalid characters", ProjectCheck));
                 else if (TeamCheck != "true")
                     return BadRequest(new ApiError(400, "Invalid characters", TeamCheck));
