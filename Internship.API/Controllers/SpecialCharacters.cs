@@ -11,6 +11,7 @@ namespace Internship.API.Controllers
         public string CheckSpecialCharacters(String field, String TypeValidation)
         {
             var response = "true";
+            if (field == null) return response;
             char[] CharsSpecial = { '*', '=', '+', 'ç', '"', '(', ')', '&', '%', '<', '>', '[', ']', ':', ';', '{', '}', '_', '-', '.', '/', '@', '#', '?', '¿' };
             char[] CharsPhone = { 'ç', '"', '&', '%', '<', '>', '[', ']', ':', ';', '{', '}', '_', '.', '/', '@', '#', '?', '¿', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'ñ', 'á', 'é', 'í', 'ó', 'ú' };
             //char[] CharsEmail = { '-','_','@', '.','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
