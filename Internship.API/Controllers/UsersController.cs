@@ -2,6 +2,7 @@
 using Internship.API.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 
@@ -62,6 +63,43 @@ namespace Internship.API.Controllers
         {
             try
             {
+                SpecialCharacters specialCharacters = new SpecialCharacters();
+                var FirstNameCheck = specialCharacters.CheckSpecialCharacters(user.FirstName, "CharsSpecial");
+                var LastNameCheck = specialCharacters.CheckSpecialCharacters(user.LastName, "CharsSpecial");
+                var EmailCheck = specialCharacters.CheckSpecialCharacters(user.Email, "CharsEmail");
+                var PhoneCheck = specialCharacters.CheckSpecialCharacters(user.Phone, "CharsPhone");
+                var StartDateCheck = specialCharacters.CheckFomatDate(user.StartDate);
+                var EndDateCheck = specialCharacters.CheckFomatDate(user.EndDate);
+                var StatusCheck = specialCharacters.CheckSpecialCharacters(user.Status, "CharsSpecial");
+                var RoleCheck = specialCharacters.CheckSpecialCharacters(user.Role, "CharsSpecial");
+
+                if (FirstNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", FirstNameCheck));
+                else if (LastNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LastNameCheck));
+                else if (EmailCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", EmailCheck));
+                else if (PhoneCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", PhoneCheck));
+                else if (StartDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", user.StartDate+ ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (user.EndDate!=null&&EndDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", user.EndDate+ ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (StatusCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", StatusCheck));
+                else if (RoleCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", RoleCheck));
+
+                ///change to lowercase
+                user.Status = user.Status.ToLower();
+                user.Role = user.Role.ToLower();
+                ///Valid only active or inactive
+                if (user.Status != "active" && user.Status != "inactive")
+                {
+                    return BadRequest(new ApiError(400, "the status must be active or inactive"));
+
+                }
+
                 if (user.StartDate >= user.EndDate)
                 {
                     return BadRequest(new ApiError(400, "The end date must be greater than the start date"));
@@ -75,7 +113,8 @@ namespace Internship.API.Controllers
                 {
                     return BadRequest(new ApiError(400, "The EndDate Must not exceed 6 months"));
                 }
-                return _userService.Create(user);
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status201Created,_userService.Create(user));
+               
             }
             catch (Exception e)
             {
@@ -85,12 +124,12 @@ namespace Internship.API.Controllers
         }
 
         /// <summary>
-        /// Get All users in the application 
+        /// Get All active users in the application 
         /// </summary>
         /// <returns>
-        /// returns list with all registered users
+        /// returns list with all registered users(only active users)
         /// </returns>
-        /// <response code="200">Returns all users.</response>
+        /// <response code="200">Returns all active users.</response>
         [HttpGet] 
         public List<UserDTO> GetAll()
         {
@@ -155,6 +194,33 @@ namespace Internship.API.Controllers
         {
             try
             {
+                SpecialCharacters specialCharacters = new SpecialCharacters();
+                var FirstNameCheck = specialCharacters.CheckSpecialCharacters(userIn.FirstName, "CharsSpecial");
+                var LastNameCheck = specialCharacters.CheckSpecialCharacters(userIn.LastName, "CharsSpecial");
+                var EmailCheck = specialCharacters.CheckSpecialCharacters(userIn.Email, "CharsEmail");
+                var PhoneCheck = specialCharacters.CheckSpecialCharacters(userIn.Phone, "CharsPhone");
+                var StartDateCheck = specialCharacters.CheckFomatDate(userIn.StartDate);
+                var EndDateCheck = specialCharacters.CheckFomatDate(userIn.EndDate);
+                var StatusCheck = specialCharacters.CheckSpecialCharacters(userIn.Status, "CharsSpecial");
+                var RoleCheck = specialCharacters.CheckSpecialCharacters(userIn.Role, "CharsSpecial");
+
+                if (FirstNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", FirstNameCheck));
+                else if (LastNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LastNameCheck));
+                else if (EmailCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", EmailCheck));
+                else if (PhoneCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", PhoneCheck));
+                else if (StartDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", userIn.StartDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (userIn.EndDate != null && EndDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", userIn.EndDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (StatusCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", StatusCheck));
+                else if (RoleCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", RoleCheck));
+
                 var user = _userService.GetById(id);
 
                 if (user == null)
@@ -162,6 +228,15 @@ namespace Internship.API.Controllers
                     return BadRequest(new ApiError(404, "User not found", $"Id: {id}"));
                 }
                 else
+                ///change to lowercase
+                userIn.Status = userIn.Status.ToLower();
+                userIn.Role = userIn.Role.ToLower();
+                ///Valid only active or inactive
+                if (userIn.Status != "active" && userIn.Status != "inactive")
+                {
+                    return BadRequest(new ApiError(400, "the status must be active or inactive"));
+
+                }
                 if (userIn.EndDate == null && userIn.Role == "intern")
                 {
                     userIn.EndDate = userIn.StartDate.AddMonths(6);

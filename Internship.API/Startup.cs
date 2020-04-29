@@ -84,6 +84,8 @@ namespace Internship.API
                     string[] errors = context.ModelState.Values.SelectMany(v => v.Errors.Select(b => b.ErrorMessage).ToList()).ToArray();
                     string error = string.Join(" ", errors);
                     var result = new BadRequestObjectResult(new ApiError(400, "Validation failed", error));
+                    if(error.Contains("The JSON value could not be converted"))
+                        result = new BadRequestObjectResult(new ApiError(400, "Invalid data type value", "One or more fields contains invalid data type values, please review the documentation."));
 
                     return result;
                 };

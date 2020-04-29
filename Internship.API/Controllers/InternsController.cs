@@ -62,7 +62,55 @@ namespace Internship.API.Controllers
         {
             try
             {
+                SpecialCharacters specialCharacters = new SpecialCharacters();
+                var FirstNameCheck = specialCharacters.CheckSpecialCharacters(intern.FirstName, "CharsSpecial");
+                var LastNameCheck = specialCharacters.CheckSpecialCharacters(intern.LastName, "CharsSpecial");
+                var EmailCheck = specialCharacters.CheckSpecialCharacters(intern.Email, "CharsEmail");
+                var PhoneCheck = specialCharacters.CheckSpecialCharacters(intern.Phone, "CharsPhone");
+                var StartDateCheck = specialCharacters.CheckFomatDate(intern.StartDate);
+                var EndDateCheck = specialCharacters.CheckFomatDate(intern.EndDate);
+                var StatusCheck = specialCharacters.CheckSpecialCharacters(intern.Status, "CharsSpecial");
+                var RoleCheck = specialCharacters.CheckSpecialCharacters(intern.Role, "CharsSpecial");
+                var ProjectCheck = specialCharacters.CheckSpecialCharacters(intern.Project, "CharsSpecial");
+                var TeamCheck = specialCharacters.CheckSpecialCharacters(intern.Team, "CharsSpecial");
+                var LeadCheck = specialCharacters.CheckSpecialCharacters(intern.Lead, "CharsSpecial");
+                var resourceManagerCheck = specialCharacters.CheckSpecialCharacters(intern.ResourceManager, "CharsSpecial");
+
+                if (FirstNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", FirstNameCheck));
+                else if (LastNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LastNameCheck));
+                else if (EmailCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", EmailCheck));
+                else if (PhoneCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", PhoneCheck));
+                else if (StartDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", intern.StartDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (intern.EndDate != null && EndDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", intern.EndDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (StatusCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", StatusCheck));
+                else if (RoleCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", RoleCheck));
+                else if (ProjectCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", ProjectCheck));
+                else if (TeamCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", TeamCheck));
+                else if (LeadCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LeadCheck));
+                else if (resourceManagerCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", resourceManagerCheck));
+
                 //validations section
+                ///change to lowercase
+                intern.Status = intern.Status.ToLower();
+                intern.Role = intern.Role.ToLower();
+                ///Valid only active or inactive
+                if (intern.Status != "active" && intern.Status != "inactive")
+                {
+                    return BadRequest(new ApiError(400, "the status must be active or inactive"));
+
+                }
                 //verify that the Userid is not the same as the Mentorid
                 if (intern.MentorId == intern.UserId)
                     return BadRequest(new ApiError(400, "Mentor id cannot be equals to User id", "Mentor id value cannot be the same as User id"));
@@ -70,6 +118,8 @@ namespace Internship.API.Controllers
                 UserDTO user = _userService.GetById(intern.UserId);
                 if (user == null)
                     return NotFound(new ApiError(404, "User not found or already exist, $Verify the information"));
+                if (user.Role != "intern")
+                    return NotFound(new ApiError(404, "User is not an intern, Verify the information"));
                 //Verify that the mentor exists in the database
                 if (intern.MentorId != null && intern.MentorId != "")
                 {
@@ -79,8 +129,7 @@ namespace Internship.API.Controllers
                 }
                 //call create method
                 var newIntern = _internService.Create(intern);
-
-                return newIntern;
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status201Created,newIntern);
             }
             catch (Exception e)
             {
@@ -158,7 +207,56 @@ namespace Internship.API.Controllers
         {
             try
             {
+                SpecialCharacters specialCharacters = new SpecialCharacters();
+                var FirstNameCheck = specialCharacters.CheckSpecialCharacters(internIn.FirstName, "CharsSpecial");
+                var LastNameCheck = specialCharacters.CheckSpecialCharacters(internIn.LastName, "CharsSpecial");
+                var EmailCheck = specialCharacters.CheckSpecialCharacters(internIn.Email, "CharsEmail");
+                var PhoneCheck = specialCharacters.CheckSpecialCharacters(internIn.Phone, "CharsPhone");
+                var StartDateCheck = specialCharacters.CheckFomatDate(internIn.StartDate);
+                var EndDateCheck = specialCharacters.CheckFomatDate(internIn.EndDate);
+                var StatusCheck = specialCharacters.CheckSpecialCharacters(internIn.Status, "CharsSpecial");
+                var RoleCheck = specialCharacters.CheckSpecialCharacters(internIn.Role, "CharsSpecial");
+                var ProjectCheck = specialCharacters.CheckSpecialCharacters(internIn.Project, "CharsSpecial");
+                var TeamCheck = specialCharacters.CheckSpecialCharacters(internIn.Team, "CharsSpecial");
+                var LeadCheck = specialCharacters.CheckSpecialCharacters(internIn.Lead, "CharsSpecial");
+                var resourceManagerCheck = specialCharacters.CheckSpecialCharacters(internIn.ResourceManager, "CharsSpecial");
+
+                if (FirstNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", FirstNameCheck));
+                else if (LastNameCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LastNameCheck));
+                else if (EmailCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", EmailCheck));
+                else if (PhoneCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", PhoneCheck));
+                else if (StartDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", internIn.StartDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (internIn.EndDate != null && EndDateCheck != true)
+                    return BadRequest(new ApiError(400, "Invalid date format", internIn.EndDate + ": Check the documentation about the date. Format: mm/dd/yyyy"));
+                else if (StatusCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", StatusCheck));
+                else if (RoleCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", RoleCheck));
+                else if (ProjectCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", ProjectCheck));
+                else if (TeamCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", TeamCheck));
+                else if (LeadCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", LeadCheck));
+                else if (resourceManagerCheck != "true")
+                    return BadRequest(new ApiError(400, "Invalid characters", resourceManagerCheck));
+
                 //validations section
+                //validations section
+                ///change to lowercase
+                internIn.Status = internIn.Status.ToLower();
+                internIn.Role = internIn.Role.ToLower();
+                ///Valid only active or inactive
+                if (internIn.Status != "active" && internIn.Status != "inactive")
+                {
+                    return BadRequest(new ApiError(400, "the status must be active or inactive"));
+
+                }
                 //verify that the Userid is not the same as the Mentorid
                 if (internIn.MentorId == internIn.UserId)
                     return BadRequest(new ApiError(400, "Mentor id cannot be equals to User id", "Mentor id value cannot be the same as User id"));
@@ -166,6 +264,8 @@ namespace Internship.API.Controllers
                 UserDTO user = _userService.GetById(internIn.UserId);
                 if (user == null)
                     return NotFound(new ApiError(404, "User not found, $Verify the information"));
+                if (user.Role != "intern")
+                    return NotFound(new ApiError(404, "User is not an intern, Verify the information"));
                 //Verify that the mentor exists in the database
                 if (internIn.MentorId != null && internIn.MentorId != "")
                 {
@@ -196,10 +296,10 @@ namespace Internship.API.Controllers
             }
         }
         /// <summary>
-        /// Get all interns registered
+        /// Get all active interns registered
         /// </summary>
         /// <returns>
-        /// a list of all the interns registered in the application 
+        /// a list of all the interns(only active interns) registered in the application 
         /// </returns>
         [HttpGet]
         public List<InternDTO> GetAll()

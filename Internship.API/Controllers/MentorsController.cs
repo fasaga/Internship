@@ -16,20 +16,25 @@ namespace Internship.API.Controllers
         {
             _mentorService = mentorService;
         }
+        
         /// <summary>
-        /// Get a list of all users with a mentor role
+        /// Get All active users with mentor role in the application 
         /// </summary>
+        /// <returns>
+        /// returns list with all registered mentors(only active users with mentor role)
+        /// </returns>
+        /// <response code="200">Returns all active mentors.</response>
         [HttpGet]
         public List<MentorDTO> Get()
         {
             return _mentorService.Get();
         }
         /// <summary>
-        /// Get all interns assigned to the mentor 
+        /// Get all active interns assigned to the mentor 
         /// </summary>
         /// <param name="id">Mentor's id</param>
-        /// <returns>The list of interns</returns>
-        /// <response code="200">Returns the list of interns</response>
+        /// <returns>The list of interns(onlly active interns)</returns>
+        /// <response code="200">Returns the list of active interns</response>
         [HttpGet("{id:length(24)}/interns")]
         public ActionResult<List<InternDTO>> GetInternsByMentorId(string id)
         {
