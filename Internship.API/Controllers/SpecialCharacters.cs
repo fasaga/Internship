@@ -54,7 +54,7 @@ namespace Internship.API.Controllers
         }
         public bool CheckFomatDate(DateTime? field)
         {
-            if (Regex.IsMatch(field.ToString(), @"^([0-9]{1,2})/([0-9]{1,2})/([0-9]{1,4})...........$"))
+            if (Regex.IsMatch(field.ToString(), @"^([0-9]{1,2})/([0-9]{1,2})/([0-9]{1,4})............$"))
                 return true;
             else
                 return false;
