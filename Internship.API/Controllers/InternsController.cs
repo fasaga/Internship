@@ -30,19 +30,34 @@ namespace Internship.API.Controllers
         ///
         ///     POST api/interns
         ///     {
-        ///         "userId": "5e7a721921487c6b60743623",
-        ///         "firstName": "humberto",
-        ///         "lastName": "Del asdsd",
-        ///         "email": "asdasd@hotmail.com",
-        ///         "phone": "312-99-5487",
-        ///         "startDate": "0001-01-01T00:00:00Z",
-        ///         "endDate": "0001-01-01T00:00:00Z",
-        ///         "activeTechnology": "net",
+        ///         "userId": "5eaf64dc6518de036cfd420c",
+        ///         "firstName": "Robertoo",
+        ///         "lastName":  "Peresz",
+        ///         "email": "r@hotmail.com",
+        ///         "phone": "3120000000",
+        ///         "startDate": "05/03/2020",
+        ///         "endDate": null,
+        ///         "activeTechnology": "java",
         ///         "status": "active",
         ///         "role": "intern",
-        ///         "mentorId": "5e7a76db5fe004666c5e9702",
-        ///         "comments": "Comments",
-        ///         "technologies": ["net", "java"]
+        //
+        ///
+        ///         "mentorId": "5eaf64d36518de036cfd4200",
+        ///         "technologies": ["pegas","java"],
+        ///         "startingTechnology": "java",
+        ///         "finalTechnology": "c#",
+        ///         "initialEnglishLevel": 1,
+        ///         "finalEnglishLevel": 3,
+        ///         "hired": true,
+        ///         "hiredSprintId": 3,
+        ///         "location": "yourhome",
+        ///         "fourthSourceOrg": "ki",
+        ///         "client":"jonh lenon",
+        ///         "project": "api",
+        ///         "team": "xmens",
+        ///         "lead": "x",
+        ///         "resourceManager": "jose maria",
+        ///         "comments": "hola"
         ///     }
         ///     
         /// Sample error:
@@ -174,19 +189,34 @@ namespace Internship.API.Controllers
         ///
         ///     PUT api/interns
         ///     {
-        ///         "userId": "5e7a721921487c6b60743623",
-        ///         "firstName": "humberto",
-        ///         "lastName": "Del asdsd",
-        ///         "email": "asdasd@hotmail.com",
-        ///         "phone": "312-99-5487",
-        ///         "startDate": "0001-01-01T00:00:00Z",
-        ///         "endDate": "0001-01-01T00:00:00Z",
-        ///         "activeTechnology": "net",
+        ///         "userId": "5eaf64dc6518de036cfd420c",
+        ///         "firstName": "Robertoo",
+        ///         "lastName":  "Peresz",
+        ///         "email": "r@hotmail.com",
+        ///         "phone": "3120000000",
+        ///         "startDate": "05/03/2020",
+        ///         "endDate": null,
+        ///         "activeTechnology": "java",
         ///         "status": "active",
         ///         "role": "intern",
-        ///         "mentorId": "5e7a76db5fe004666c5e9702",
-        ///         "comments": "Comments",
-        ///         "technologies": ["net", "java"]
+        //
+        ///
+        ///         "mentorId": "5eaf64d36518de036cfd4200",
+        ///         "technologies": ["pegas","java"],
+        ///         "startingTechnology": "java",
+        ///         "finalTechnology": "c#",
+        ///         "initialEnglishLevel": 1,
+        ///         "finalEnglishLevel": 3,
+        ///         "hired": true,
+        ///         "hiredSprintId": 3,
+        ///         "location": "yourhome",
+        ///         "fourthSourceOrg": "ki",
+        ///         "client":"jonh lenon",
+        ///         "project": "api",
+        ///         "team": "xmens",
+        ///         "lead": "x",
+        ///         "resourceManager": "jose maria",
+        ///         "comments": "hola"
         ///     }
         ///     
         /// Sample error:
